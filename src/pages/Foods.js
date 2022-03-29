@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MyContext from '../context/MyContext';
+import Header from '../component/Header';
 
 function Foods() {
   const {
@@ -31,6 +32,7 @@ function Foods() {
 
   return (
     <div>
+      <Header title="foods" />
       {
         (foodsList.length > 0)
           ? (

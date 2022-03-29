@@ -8,6 +8,7 @@ import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
 import FoodDetailsScreen from './pages/FoodDetailsScreen';
 import DrinkDetailsScreen from './pages/DrinkDetailsScreen';
+import DoneRecipes from './pages/DoneRecipes';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         {/* // temporariamente direcionando à tela de login; */}
         <Route path="/drinks/:recipeId/in-progress" component={ Login } />
         {/* // temporariamente direcionando à tela de login; */}
+        <Route path="/done-recipes" component={ DoneRecipes } />
         <Route path="/drinks" component={ Drinks } />
         <Route path="/foods" component={ Foods } />
         <Route path="/" component={ Login } />
