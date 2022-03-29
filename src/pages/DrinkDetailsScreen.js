@@ -2,9 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchCocktailById } from '../services/fetchCocktail';
 import { fetchRecomendedMeals } from '../services/fetchMealsDetails';
-import { verifyRecipeProgress } from '../helpers/localStorage';
+import { checkRecipeFavoritness, checkRecipeProgress,
+  saveFavoriteRecipe } from '../helpers/localStorage';
 import shareIcon from '../images/shareIcon.svg';
-
+import whiteHeart from '../images/whiteHeartIcon.svg';
+import blackHeart from '../images/blackHeartIcon.svg';
 import './DetailsScreen.css';
 
 const MAGIC_NUMBER_SIX = 6;
@@ -15,6 +17,7 @@ export default function DrinkDetailsScreen(props) {
   const [id, setId] = useState('');
   const [recomendations, setRecomendations] = useState([]);
   const [recipeProgress, setRecipeProgress] = useState('new');
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const { match: { params: { recipeId } } } = props;
 
@@ -35,7 +38,9 @@ export default function DrinkDetailsScreen(props) {
     const recomendedMeals = await fetchRecomendedMeals();
     setRecomendations(recomendedMeals);
 
-    setRecipeProgress(verifyRecipeProgress(recipeId, 'cocktails'));
+    setRecipeProgress(checkRecipeProgress(recipeId, 'cocktails'));
+
+    setIsFavorite(checkRecipeFavoritness(recipeId));
   }, [id, recipeId]);
 
   useEffect(() => {
@@ -53,8 +58,25 @@ export default function DrinkDetailsScreen(props) {
     currentTarget.classList.toggle('popUp-container');
   };
 
+  const handleFavBtnClick = () => {
+    setIsFavorite(!isFavorite);
+    const { strCategory: category, strDrink: name,
+      strDrinkThumb, strAlcoholic } = drinkDetails;
+    const image = `${strDrinkThumb}/preview`;
+    const newObj = {
+      id,
+      type: 'drink',
+      nationality: '',
+      category,
+      alcoholicOrNot: (strAlcoholic === 'Alcoholic' ? 'Alcoholic' : 'non-alcoholic'),
+      name,
+      image };
+    saveFavoriteRecipe({ ...newObj });
+  };
+
   return (
     <main>
+      {console.log(drinkDetails)}
       <h1 data-testid="recipe-title">
         { drinkDetails.strDrink ?? drinkDetails.strGlass }
       </h1>
@@ -75,8 +97,23 @@ export default function DrinkDetailsScreen(props) {
           <img src={ shareIcon } alt="share button" />
         </button>
 
-        <button type="button" data-testid="favorite-btn">
-          favorite
+        <button
+          type="button"
+          data-testid="favorite-btn"
+          onClick={ handleFavBtnClick }
+          src={ isFavorite ? blackHeart : whiteHeart }
+          className={ isFavorite ? 'favorite-btn' : '' }
+        >
+          <img
+            src={ whiteHeart }
+            alt="a empty heart. click to favorite this recipe"
+            className="no-favorited"
+          />
+          <img
+            src={ blackHeart }
+            alt="a filld heart. click to unfavorite this recipe"
+            className="favorited"
+          />
         </button>
       </nav>
 
@@ -103,7 +140,7 @@ export default function DrinkDetailsScreen(props) {
       </div>
 
       <div>
-        Receitas recomendadas:
+        Recomended recipes:
         <div
           className="recomendations-container"
         >

@@ -42,3 +42,15 @@ main {
 /* .popUp-container .popUp {
 
 } */
+
+button .favorited {
+  display: none;
+}
+
+.favorite-btn .favorited {
+  display: inline;
+}
+
+.favorite-btn .no-favorited {
+  display: none;
+}
