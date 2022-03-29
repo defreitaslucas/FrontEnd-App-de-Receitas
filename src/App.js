@@ -3,16 +3,15 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
-import FoodDetailsScreen from './pages/FoodDetailsScreen';
-import DrinkDetailsScreen from './pages/DrinkDetailsScreen';
+import Foods from './pages/Foods';
 
 function App() {
   return (
     <Switch>
       <Route exact path="/" component={ Login } />
-      <Route path="/foods/:mealId" component={ FoodDetailsScreen } />
-      <Route path="/drinks/:drinkId" component={ DrinkDetailsScreen } />
+      <Route path="/foods" component={ Foods } />
       {/* <Route path="/" component={} />
+      <Route path="/" component={} />
       <Route path="/" component={} />
       <Route path="/" component={} />
       <Route path="/" component={} />
