@@ -41,7 +41,7 @@ function Header({ title }) {
       </section>
 
       {searchBar
-        ? <SearchBar />
+        ? <SearchBar page={ title } />
         : null}
     </div>
   );

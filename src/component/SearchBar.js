@@ -1,8 +1,16 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-function SearchBar() {
-  const [searchBarValue, setSearchBarValue] = useState('');
-  console.log(searchBarValue);
+function SearchBar({ page }) {// eslint-disable-line
+  const [searchBarValue, setSearchBarValue] = useState(''); // eslint-disable-line
+  const [nameValue, setNameValue] = useState(''); // eslint-disable-line
+  const [ingredientsValue, setIngredientsValue] = useState(''); // eslint-disable-line
+  const [firstLetterValue, setfirstLetterValue] = useState(''); // eslint-disable-line
+
+  const handleChange = (target) => {
+    console.log(target.value);
+  };
+
   return (
     <form className="search-bar">
       <input
@@ -19,6 +27,7 @@ function SearchBar() {
           name="radioSearch"
           type="radio"
           value="Ingredients"
+          onChange={ ({ target }) => handleChange(target) }
         />
         Name
         <input
@@ -27,6 +36,7 @@ function SearchBar() {
           name="radioSearch"
           type="radio"
           value="Name"
+          onChange={ ({ target }) => handleChange(target) }
         />
         First Letter
         <input
@@ -35,11 +45,23 @@ function SearchBar() {
           name="radioSearch"
           type="radio"
           value="First Letter"
+          onChange={ ({ target }) => handleChange(target) }
         />
-        <button data-testid="exec-search-btn" type="button"> search </button>
+        <button
+          data-testid="exec-search-btn"
+          type="button"
+          name="radioSearch"
+          onClick={ ({ target }) => console.log(target.value) }
+        >
+          search
+        </button>
       </section>
     </form>
   );
 }
+
+SearchBar.propTypes = {
+  page: PropTypes.string.isRequired,
+};
 
 export default SearchBar;
