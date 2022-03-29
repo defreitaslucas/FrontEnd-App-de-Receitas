@@ -10,8 +10,20 @@ function App() {
   return (
     <Switch>
       <Route exact path="/" component={ Login } />
-      <Route path="/foods/:mealId" component={ FoodDetailsScreen } />
-      <Route path="/drinks/:drinkId" component={ DrinkDetailsScreen } />
+      <Route path="/foods/:recipeId" component={ FoodDetailsScreen } />
+      <Route
+        exact
+        path="/foods/:recipeId"
+        render={ (props) => <FoodDetailsScreen { ...props } /> }
+      />
+      <Route
+        exact
+        path="/drinks/:recipeId"
+        render={ (props) => <DrinkDetailsScreen { ...props } /> }
+      />
+      <Route path="/foods/:recipeId/in-progress" component={ Login } />
+      <Route path="/drinks/:recipeId/in-progress" component={ Login } />
+
       {/* <Route path="/" component={} />
       <Route path="/" component={} />
       <Route path="/" component={} />

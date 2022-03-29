@@ -1,20 +1,21 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { fetchCocktailById } from '../services/fetchCocktail';
 import { fetchRecomendedMeals } from '../services/fetchMealsDetails';
+import { verifyRecipeProgress } from '../helpers/localStorage';
+
 import './DetailsScreen.css';
 
 const MAGIC_NUMBER_SIX = 6;
 
-export default function DrinkDetailsScreen() {
+export default function DrinkDetailsScreen(props) {
   const [drinkDetails, setDrinkDetails] = useState({});
   const [ingredientList, setIngredientList] = useState([]);
   const [id, setId] = useState('');
   const [recomendations, setRecomendations] = useState([]);
+  const [recipeProgress, setRecipeProgress] = useState('new');
 
-  const history = useHistory();
-  const drinkPathArr = history.location.pathname.split('/');
-  const drinkId = drinkPathArr[drinkPathArr.length - 1];
+  const { match: { params: { recipeId } } } = props;
 
   const getInitialData = useCallback(async () => {
     const drinkData = await fetchCocktailById(id);
@@ -28,15 +29,22 @@ export default function DrinkDetailsScreen() {
     }, []);
     setIngredientList(ingredients);
     setDrinkDetails(drinkData);
-    setId(drinkId);
+    setId(recipeId);
 
     const recomendedMeals = await fetchRecomendedMeals();
     setRecomendations(recomendedMeals);
-  }, [id, drinkId]);
+
+    setRecipeProgress(verifyRecipeProgress(recipeId, 'cocktails'));
+  }, [id, recipeId]);
 
   useEffect(() => {
     getInitialData();
   }, [getInitialData]);
+
+  const handleStartButtonClick = () => {
+    const { history: { push } } = props;
+    push(`/drinks/${id}/in-progress`);
+  };
 
   return (
     <main>
@@ -107,7 +115,22 @@ export default function DrinkDetailsScreen() {
         </div>
       </div>
 
-      <button type="button" data-testid="start-recipe-btn"> Iniciar receita</button>
+      {recipeProgress === 'done'
+        ? 'Nice Job!!'
+        : (
+          <button
+            className="start-recipe-btn"
+            type="button"
+            data-testid="start-recipe-btn"
+            name="Start Recipe"
+            onClick={ handleStartButtonClick }
+          >
+            { recipeProgress === 'new' ? 'Start Recipe' : 'Continue Recipe' }
+          </button>)}
     </main>
   );
 }
+
+DrinkDetailsScreen.propTypes = {
+  recipeId: PropTypes.string.isRequired,
+}.isRequired;

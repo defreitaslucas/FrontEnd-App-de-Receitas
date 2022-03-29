@@ -20,7 +20,6 @@ export const fetchRecomendedMeals = async () => {
   try {
     const response = await fetch(url);
     const mealDetails = await response.json();
-    console.log(mealDetails);
     return mealDetails.meals;
   } catch (error) {
     return error;

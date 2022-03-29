@@ -1,6 +1,7 @@
 main {
   height: 640px;
   overflow: auto;
+  padding-bottom: 30px;
   width: 360px;
 }
 
@@ -12,4 +13,20 @@ main {
 
 .recomendations-container img {
   width: 50vw;
+}
+
+.start-recipe-btn {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.ingredients-container {
+  height: 10vh;
+  overflow: auto;
+}
+
+.instruction-paragraph {
+  height: 10vh;
+  overflow: auto;
 }

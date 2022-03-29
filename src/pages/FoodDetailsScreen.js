@@ -1,20 +1,20 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { fetchRecomendedDrinks } from '../services/fetchCocktail';
 import { fetchMealById } from '../services/fetchMealsDetails';
+import { verifyRecipeProgress } from '../helpers/localStorage';
 import './DetailsScreen.css';
 
 const MAGIC_NUMBER_SIX = 6;
 
-export default function FoodDetailsScreen() {
+export default function FoodDetailsScreen(props) {
   const [foodDetails, setFoodDetails] = useState({});
   const [ingredientList, setIngredientList] = useState([]);
   const [id, setId] = useState('');
   const [recomendation, setRecomendations] = useState([]);
+  const [recipeProgress, setRecipeProgress] = useState('new');
 
-  const history = useHistory();
-  const foodPathArr = history.location.pathname.split('/');
-  const foodId = foodPathArr[foodPathArr.length - 1];
+  const { match: { params: { recipeId } } } = props;
 
   const getInitialData = useCallback(async () => {
     const foodData = await fetchMealById(id);
@@ -28,18 +28,26 @@ export default function FoodDetailsScreen() {
     }, []);
     setIngredientList(ingredients);
     setFoodDetails(foodData);
-    setId(foodId);
+    setId(recipeId);
 
     const recomendedDrinks = await fetchRecomendedDrinks();
     setRecomendations(recomendedDrinks);
-  }, [id, foodId]);
+
+    setRecipeProgress(verifyRecipeProgress(recipeId, 'meals'));
+  }, [id, recipeId]);
 
   useEffect(() => {
     getInitialData();
   }, [getInitialData]);
 
+  const handleStartButtonClick = () => {
+    const { history: { push } } = props;
+    push(`/foods/${id}/in-progress`);
+  };
+
   return (
     <main>
+      {console.log(props)}
       <h1 data-testid="recipe-title">
         { foodDetails.strMeal }
       </h1>
@@ -65,7 +73,7 @@ export default function FoodDetailsScreen() {
       </div>
 
       <div>
-        <ol>
+        <ol className="ingredients-container">
           INGREDIENTES:
           { ingredientList.map((ingredient, index) => (
             <li key={ ingredient } data-testid={ `${index}-ingredient-name-and-measure` }>
@@ -73,7 +81,7 @@ export default function FoodDetailsScreen() {
             </li>
           )) }
         </ol>
-        <p data-testid="instructions">
+        <p data-testid="instructions" className="instruction-paragraph">
           { foodDetails.strInstructions }
         </p>
       </div>
@@ -114,7 +122,22 @@ export default function FoodDetailsScreen() {
         </div>
       </div>
 
-      <button type="button" data-testid="start-recipe-btn"> Iniciar receita</button>
+      {recipeProgress === 'done'
+        ? 'Nice Job!!'
+        : (
+          <button
+            className="start-recipe-btn"
+            type="button"
+            data-testid="start-recipe-btn"
+            name="Start Recipe"
+            onClick={ handleStartButtonClick }
+          >
+            { recipeProgress === 'new' ? 'Start Recipe' : 'Continue Recipe' }
+          </button>)}
     </main>
   );
 }
+
+FoodDetailsScreen.propTypes = {
+  recipeId: PropTypes.string.isRequired,
+}.isRequired;
