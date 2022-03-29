@@ -1,0 +1,84 @@
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import MyContext from '../context/MyContext';
+
+function Drinks() {
+  const { drinksList, drinksCategories, selectedDrinksCategory, setDrinks,
+  } = useContext(MyContext);
+
+  function addFilter(category) {
+    setDrinks((prevState) => {
+      if (category === selectedDrinksCategory) {
+        return ({
+          ...prevState,
+          selectedCategory: '',
+        });
+      }
+      return ({
+        ...prevState,
+        selectedCategory: category,
+      });
+    });
+  }
+
+  function removeFilter() {
+    setDrinks((prevState) => ({
+      ...prevState,
+      selectedCategory: '',
+    }));
+  }
+
+  return (
+    <div>
+      {
+        (drinksList.length > 0)
+          ? (
+            drinksList.map(({ strDrinkThumb, strDrink }, index) => (
+              <Link
+                key={ index }
+                to={ `/drinks/${strDrink}` }
+                data-testid={ `${index}-recipe-card` }
+              >
+                <img
+                  src={ strDrinkThumb }
+                  alt={ strDrink }
+                  data-testid={ `${index}-card-img` }
+                />
+                <p
+                  data-testid={ `${index}-card-name` }
+                >
+                  { strDrink }
+                </p>
+              </Link>
+            ))
+          )
+          : null
+      }
+      {
+        (drinksCategories.length > 0)
+          ? (
+            drinksCategories.map((category) => (
+              <button
+                key={ category }
+                type="button"
+                onClick={ () => addFilter(category) }
+                data-testid={ `${category}-category-filter` }
+              >
+                {category}
+              </button>
+            ))
+          )
+          : null
+      }
+      <button
+        type="button"
+        onClick={ removeFilter }
+        data-testid="All-category-filter"
+      >
+        Remover Filtro
+      </button>
+    </div>
+  );
+}
+
+export default Drinks;
