@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { fetchCocktailById } from '../services/fetchCocktail';
 import { fetchRecomendedMeals } from '../services/fetchMealsDetails';
 import { verifyRecipeProgress } from '../helpers/localStorage';
+import shareIcon from '../images/shareIcon.svg';
 
 import './DetailsScreen.css';
 
@@ -46,6 +47,12 @@ export default function DrinkDetailsScreen(props) {
     push(`/drinks/${id}/in-progress`);
   };
 
+  const handleShareButtonClick = ({ currentTarget }) => {
+    const { location: { pathname } } = props;
+    navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
+    currentTarget.classList.toggle('popUp-container');
+  };
+
   return (
     <main>
       <h1 data-testid="recipe-title">
@@ -58,9 +65,16 @@ export default function DrinkDetailsScreen(props) {
       </h3>
 
       <nav>
-        <button type="button" data-testid="share-btn">
-          share
+        <button
+          type="button"
+          data-testid="share-btn"
+          onClick={ handleShareButtonClick }
+          className="popUp-container"
+        >
+          <span className="popUp">Link copied!</span>
+          <img src={ shareIcon } alt="share button" />
         </button>
+
         <button type="button" data-testid="favorite-btn">
           favorite
         </button>

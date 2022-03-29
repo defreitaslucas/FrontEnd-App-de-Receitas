@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { fetchRecomendedDrinks } from '../services/fetchCocktail';
 import { fetchMealById } from '../services/fetchMealsDetails';
 import { verifyRecipeProgress } from '../helpers/localStorage';
+import shareIcon from '../images/shareIcon.svg';
 import './DetailsScreen.css';
 
 const MAGIC_NUMBER_SIX = 6;
@@ -45,9 +46,14 @@ export default function FoodDetailsScreen(props) {
     push(`/foods/${id}/in-progress`);
   };
 
+  const handleShareButtonClick = ({ currentTarget }) => {
+    const { location: { pathname } } = props;
+    navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
+    currentTarget.classList.toggle('popUp-container');
+  };
+
   return (
     <main>
-      {console.log(props)}
       <h1 data-testid="recipe-title">
         { foodDetails.strMeal }
       </h1>
@@ -56,9 +62,16 @@ export default function FoodDetailsScreen(props) {
       </h3>
 
       <nav>
-        <button type="button" data-testid="share-btn">
-          share
+        <button
+          type="button"
+          data-testid="share-btn"
+          onClick={ handleShareButtonClick }
+          className="popUp-container"
+        >
+          <span className="popUp">Link copied!</span>
+          <img src={ shareIcon } alt="share button" />
         </button>
+
         <button type="button" data-testid="favorite-btn">
           favorite
         </button>

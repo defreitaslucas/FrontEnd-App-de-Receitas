@@ -30,3 +30,15 @@ main {
   height: 10vh;
   overflow: auto;
 }
+
+/* .popUp-container {
+
+} */
+
+.popUp-container span {
+  display: none;
+}
+
+/* .popUp-container .popUp {
+
+} */
