@@ -2,14 +2,13 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 
-function Foods() {
-  const {
-    foodsList, foodsCategories, selectedFoodsCategory, setFoods,
+function Drinks() {
+  const { drinksList, drinksCategories, selectedDrinksCategory, setDrinks,
   } = useContext(MyContext);
 
   function addFilter(category) {
-    setFoods((prevState) => {
-      if (category === selectedFoodsCategory) {
+    setDrinks((prevState) => {
+      if (category === selectedDrinksCategory) {
         return ({
           ...prevState,
           selectedCategory: '',
@@ -23,7 +22,7 @@ function Foods() {
   }
 
   function removeFilter() {
-    setFoods((prevState) => ({
+    setDrinks((prevState) => ({
       ...prevState,
       selectedCategory: '',
     }));
@@ -32,22 +31,22 @@ function Foods() {
   return (
     <div>
       {
-        (foodsList.length > 0)
+        (drinksList.length > 0)
           ? (
-            foodsList.map(({ strMealThumb, strMeal, idMeal }, index) => (
+            drinksList.map(({ strDrinkThumb, strDrink, idDrink }, index) => (
               <div key={ index }>
                 <img
-                  src={ strMealThumb }
-                  alt={ strMeal }
+                  src={ strDrinkThumb }
+                  alt={ strDrink }
                   data-testid={ `${index}-card-img` }
                 />
                 <p
                   data-testid={ `${index}-card-name` }
                 >
-                  { strMeal }
+                  { strDrink }
                 </p>
                 <Link
-                  to={ `/foods/${idMeal}` }
+                  to={ `/drinks/${idDrink}` }
                   data-testid={ `${index}-recipe-card` }
                 >
                   Ver detalhes
@@ -58,9 +57,9 @@ function Foods() {
           : null
       }
       {
-        (foodsCategories.length > 0)
+        (drinksCategories.length > 0)
           ? (
-            foodsCategories.map((category) => (
+            drinksCategories.map((category) => (
               <button
                 key={ category }
                 type="button"
@@ -84,4 +83,4 @@ function Foods() {
   );
 }
 
-export default Foods;
+export default Drinks;
