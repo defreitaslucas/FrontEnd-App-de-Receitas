@@ -9,6 +9,7 @@ import Drinks from './pages/Drinks';
 import FoodDetailsScreen from './pages/FoodDetailsScreen';
 import DrinkDetailsScreen from './pages/DrinkDetailsScreen';
 import FavoriteRecipesScreen from './pages/FavoriteRecipesScreen';
+import ProfileScreen from './pages/ProfileScreen';
 
 function App() {
   return (
@@ -23,9 +24,9 @@ function App() {
         <Route path="/drinks" component={ Drinks } />
         <Route path="/favorite-recipes" component={ FavoriteRecipesScreen } />
         <Route path="/foods" component={ Foods } />
+        <Route path="/profile" component={ ProfileScreen } />
         <Route path="/" component={ Login } />
         {/*  <Route path="/" component={} />
-        <Route path="/" component={} />
         <Route path="/" component={} /> */}
       </Switch>
     </Provider>
