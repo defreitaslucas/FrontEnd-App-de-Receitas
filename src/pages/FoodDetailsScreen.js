@@ -1,11 +1,17 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { fetchRecomendedDrinks } from '../services/fetchCocktail';
 import { fetchMealById } from '../services/fetchMealsDetails';
+import './DetailsScreen.css';
+
+const MAGIC_NUMBER_SIX = 6;
 
 export default function FoodDetailsScreen() {
   const [foodDetails, setFoodDetails] = useState({});
   const [ingredientList, setIngredientList] = useState([]);
   const [id, setId] = useState('');
+  const [recomendation, setRecomendations] = useState([]);
+
   const history = useHistory();
   const foodPathArr = history.location.pathname.split('/');
   const foodId = foodPathArr[foodPathArr.length - 1];
@@ -23,6 +29,9 @@ export default function FoodDetailsScreen() {
     setIngredientList(ingredients);
     setFoodDetails(foodData);
     setId(foodId);
+
+    const recomendedDrinks = await fetchRecomendedDrinks();
+    setRecomendations(recomendedDrinks);
   }, [id, foodId]);
 
   useEffect(() => {
@@ -78,8 +87,31 @@ export default function FoodDetailsScreen() {
         </object>
       </div>
 
-      <div data-testid={ `${0}-recomendation-card` }>
+      <div>
         Receitas recomendadas:
+        <div
+          className="recomendations-container"
+        >
+          {recomendation.map(({ idDrink, strDrinkThumb, strDrink }, index) => {
+            if (index < MAGIC_NUMBER_SIX) {
+              return (
+                <div
+                  key={ idDrink }
+                  className="recomended-iten"
+                  data-testid={ `${index}-recomendation-card` }
+                >
+                  <img
+                    src={ `${strDrinkThumb}/preview` }
+                    alt={ `${strDrink} recomendation` }
+                  />
+                  <span data-testid={ `${index}-recomendation-title` }>
+                    { strDrink }
+                  </span>
+                </div>
+              );
+            } return null;
+          })}
+        </div>
       </div>
 
       <button type="button" data-testid="start-recipe-btn"> Iniciar receita</button>

@@ -8,11 +8,21 @@ export const fetchMealById = async (foodId) => {
   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${foodId}`;
   try {
     const response = await fetch(url);
-    const foodDetails = await response.json();
-    return foodDetails.meals[0];
+    const mealDetails = await response.json();
+    return mealDetails.meals[0];
   } catch (error) {
     return error;
   }
 };
 
-// www.themealdb.com/api/json/v1/1/lookup.php?i=52772;
+export const fetchRecomendedMeals = async () => {
+  const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  try {
+    const response = await fetch(url);
+    const mealDetails = await response.json();
+    console.log(mealDetails);
+    return mealDetails.meals;
+  } catch (error) {
+    return error;
+  }
+};

@@ -1,0 +1,15 @@
+main {
+  height: 640px;
+  overflow: auto;
+  width: 360px;
+}
+
+.recomendations-container {
+  display: flex;
+  flex-flow: row;
+  overflow: auto;
+}
+
+.recomendations-container img {
+  width: 50vw;
+}

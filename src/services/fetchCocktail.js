@@ -14,3 +14,14 @@ export const fetchCocktailById = async (cocktailId) => {
     return error;
   }
 };
+
+export const fetchRecomendedDrinks = async () => {
+  const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+  try {
+    const response = await fetch(url);
+    const drinkDetails = await response.json();
+    return drinkDetails.drinks;
+  } catch (error) {
+    return error;
+  }
+};
