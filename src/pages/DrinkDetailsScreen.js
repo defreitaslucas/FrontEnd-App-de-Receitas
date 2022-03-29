@@ -5,22 +5,25 @@ import { fetchCocktailById } from '../services/fetchCocktail';
 export default function DrinkDetailsScreen() {
   const [drinkDetails, setDrinkDetails] = useState({});
   const [ingredientList, setIngredientList] = useState([]);
+  const [id, setId] = useState('');
   const history = useHistory();
   const drinkPathArr = history.location.pathname.split('/');
   const drinkId = drinkPathArr[drinkPathArr.length - 1];
 
   const getInitialData = useCallback(async () => {
-    const drinkData = await fetchCocktailById(drinkId); // trocar id fixo pelo da url;
-    let ingredients = Object.entries(drinkData).reduce((acc, data) => {
-      if (data[0].includes('strIngredient') && data[1]) {
-        acc = [...acc, data];
-        return acc;
-      } return acc;
+    const drinkData = await fetchCocktailById(id);
+    const ingredientsArr = Object.entries(drinkData).filter(([key, value]) => (key
+      .includes('strIngredient') && value));
+    const measuresArr = Object.entries(drinkData).filter(([key, value]) => (key
+      .includes('strMeasure') && value));
+    const ingredients = ingredientsArr.reduce((acc, data, index) => {
+      acc = [...acc, `${data[1]} ${measuresArr[index][1]}`];
+      return acc;
     }, []);
-    if (!ingredients) ingredients = ['nothing'];
     setIngredientList(ingredients);
     setDrinkDetails(drinkData);
-  }, [drinkId]);
+    setId(drinkId);
+  }, [id, drinkId]);
 
   useEffect(() => {
     getInitialData();
@@ -28,11 +31,12 @@ export default function DrinkDetailsScreen() {
 
   return (
     <main>
-      {console.log('ingredientssssss', ingredientList) }
       <h1 data-testid="recipe-title">
         { drinkDetails.strDrink ?? drinkDetails.strGlass }
       </h1>
       <h3 data-testid="recipe-category">
+        {drinkDetails.strAlcoholic}
+        {' '}
         { drinkDetails.strCategory }
       </h3>
 
@@ -58,23 +62,13 @@ export default function DrinkDetailsScreen() {
           INGREDIENTES:
           { ingredientList.map((ingredient, index) => (
             <li key={ ingredient } data-testid={ `${index}-ingredient-name-and-measure` }>
-              { console.log(`${index}-ingredient-name-and-measure`) }
-              {ingredient[1]}
+              {ingredient}
             </li>
           )) }
         </ol>
         <p data-testid="instructions">
           { drinkDetails.strInstructions }
         </p>
-      </div>
-
-      <div>
-        <object
-          data={ drinkDetails.strVideo }
-          data-testid="video"
-        >
-          { `${drinkDetails.strGlass} prep video isn't disponible` }
-        </object>
       </div>
 
       <div data-testid={ `${0}-recomendation-card` }>

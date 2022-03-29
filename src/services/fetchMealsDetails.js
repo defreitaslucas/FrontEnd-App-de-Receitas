@@ -9,7 +9,6 @@ export const fetchMealById = async (foodId) => {
   try {
     const response = await fetch(url);
     const foodDetails = await response.json();
-    console.log('details', foodDetails.meals[0]);
     return foodDetails.meals[0];
   } catch (error) {
     return error;

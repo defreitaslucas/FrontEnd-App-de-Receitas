@@ -12,13 +12,14 @@ export default function FoodDetailsScreen() {
 
   const getInitialData = useCallback(async () => {
     const foodData = await fetchMealById(id);
-    let ingredients = Object.entries(foodData).reduce((acc, data) => {
-      if (data[0].includes('strIngredient') && data[1]) {
-        acc = [...acc, data];
-        return acc;
-      } return acc;
+    const ingredientsArr = Object.entries(foodData).filter(([key, value]) => (key
+      .includes('strIngredient') && value));
+    const measuresArr = Object.entries(foodData).filter(([key, value]) => (key
+      .includes('strMeasure') && value));
+    const ingredients = ingredientsArr.reduce((acc, data, index) => {
+      acc = [...acc, `${data[1]} ${measuresArr[index][1]}`];
+      return acc;
     }, []);
-    if (!ingredients) ingredients = ['nothing'];
     setIngredientList(ingredients);
     setFoodDetails(foodData);
     setId(foodId);
@@ -30,9 +31,8 @@ export default function FoodDetailsScreen() {
 
   return (
     <main>
-      {console.log(foodId)}
       <h1 data-testid="recipe-title">
-        { foodDetails.strGlass }
+        { foodDetails.strMeal }
       </h1>
       <h3 data-testid="recipe-category">
         { foodDetails.strCategory }
@@ -60,7 +60,7 @@ export default function FoodDetailsScreen() {
           INGREDIENTES:
           { ingredientList.map((ingredient, index) => (
             <li key={ ingredient } data-testid={ `${index}-ingredient-name-and-measure` }>
-              {ingredient[1]}
+              {ingredient}
             </li>
           )) }
         </ol>
@@ -78,7 +78,7 @@ export default function FoodDetailsScreen() {
         </object>
       </div>
 
-      <div data-testid={ `${1}-recomendation-card` }>
+      <div data-testid={ `${0}-recomendation-card` }>
         Receitas recomendadas:
       </div>
 
