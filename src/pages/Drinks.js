@@ -33,12 +33,8 @@ function Drinks() {
       {
         (drinksList.length > 0)
           ? (
-            drinksList.map(({ strDrinkThumb, strDrink }, index) => (
-              <Link
-                key={ index }
-                to={ `/drinks/${strDrink}` }
-                data-testid={ `${index}-recipe-card` }
-              >
+            drinksList.map(({ strDrinkThumb, strDrink, idDrink }, index) => (
+              <div key={ index }>
                 <img
                   src={ strDrinkThumb }
                   alt={ strDrink }
@@ -49,7 +45,13 @@ function Drinks() {
                 >
                   { strDrink }
                 </p>
-              </Link>
+                <Link
+                  to={ `/drinks/${idDrink}` }
+                  data-testid={ `${index}-recipe-card` }
+                >
+                  Ver detalhes
+                </Link>
+              </div>
             ))
           )
           : null

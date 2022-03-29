@@ -34,12 +34,8 @@ function Foods() {
       {
         (foodsList.length > 0)
           ? (
-            foodsList.map(({ strMealThumb, strMeal }, index) => (
-              <Link
-                key={ index }
-                to={ `/foods/${strMeal}` }
-                data-testid={ `${index}-recipe-card` }
-              >
+            foodsList.map(({ strMealThumb, strMeal, idMeal }, index) => (
+              <div key={ index }>
                 <img
                   src={ strMealThumb }
                   alt={ strMeal }
@@ -50,7 +46,13 @@ function Foods() {
                 >
                   { strMeal }
                 </p>
-              </Link>
+                <Link
+                  to={ `/foods/${idMeal}` }
+                  data-testid={ `${index}-recipe-card` }
+                >
+                  Ver detalhes
+                </Link>
+              </div>
             ))
           )
           : null

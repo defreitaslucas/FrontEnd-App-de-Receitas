@@ -13,11 +13,11 @@ function App() {
   return (
     <Provider>
       <Switch>
-        <Route exact path="/" component={ Login } />
-        <Route path="/foods" component={ Foods } />
-        <Route path="/drinks" component={ Drinks } />
+        <Route path="/drinks/:id" component={ DrinkDetails } />
         <Route path="/foods/:id" component={ FoodDetails } />
-        <Route path="/drinks/id" component={ DrinkDetails } />
+        <Route path="/drinks" component={ Drinks } />
+        <Route path="/foods" component={ Foods } />
+        <Route path="/" component={ Login } />
         {/*  <Route path="/" component={} />
         <Route path="/" component={} />
         <Route path="/" component={} /> */}

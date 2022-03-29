@@ -17,7 +17,6 @@ function Provider({ children }) {
     drinksList: [],
     renderedDrinksList: [],
     drinksCategories: [],
-    isFiltered: false,
     selectedCategory: '',
   });
 
@@ -106,7 +105,6 @@ function Provider({ children }) {
     selectedDrinksCategory: drinks.selectedCategory,
     setFoods,
     setDrinks,
-    TWELVE,
   };
 
   return (
