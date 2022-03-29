@@ -62,7 +62,7 @@ export default function DrinkDetailsScreen(props) {
     setIsFavorite(!isFavorite);
     const { strCategory: category, strDrink: name,
       strDrinkThumb, strAlcoholic } = drinkDetails;
-    const image = `${strDrinkThumb}/preview`;
+    const image = strDrinkThumb;
     const newObj = {
       id,
       type: 'drink',
