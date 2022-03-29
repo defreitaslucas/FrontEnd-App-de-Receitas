@@ -1,0 +1,56 @@
+main {
+  height: 640px;
+  overflow: auto;
+  padding-bottom: 30px;
+  width: 360px;
+}
+
+.recomendations-container {
+  display: flex;
+  flex-flow: row;
+  overflow: auto;
+}
+
+.recomendations-container img {
+  width: 50vw;
+}
+
+.start-recipe-btn {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.ingredients-container {
+  height: 10vh;
+  overflow: auto;
+}
+
+.instruction-paragraph {
+  height: 10vh;
+  overflow: auto;
+}
+
+/* .popUp-container {
+
+} */
+
+.popUp-container span {
+  display: none;
+}
+
+/* .popUp-container .popUp {
+
+} */
+
+button .favorited {
+  display: none;
+}
+
+.favorite-btn .favorited {
+  display: inline;
+}
+
+.favorite-btn .no-favorited {
+  display: none;
+}
