@@ -1,29 +1,46 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { fetchCocktailDetails } from '../services/fetchCocktail';
 import { fetchMealsDetails } from '../services/fetchMealsDetails';
+import isFoodCheckStr from '../helpers';
+import MyContext from '../context/MyContext';
 import './ExploreIngredientsScreen.css';
 
 const MAGIC_NUMBER_TWELVE = 12;
 
-export default function ExploreIngredientsScreen({ location }) {
+export default function ExploreIngredientsScreen({ location, history }) {
   const isFood = location.pathname.includes('foods');
-  const isFoodStr = isFood ? 'foods' : 'drinks';
+  const isFoodStr = isFoodCheckStr();
+
+  const { setFoods, setDrinks } = useContext(MyContext);
+
   const [ingredients, setIngredients] = useState([]);
 
   const setInitialData = useCallback(async () => {
     const listIngredientsData = isFood
       ? await fetchMealsDetails('i')
       : await fetchCocktailDetails('i');
-    const listIngredients = isFood
-      ? listIngredientsData.meals
-      : listIngredientsData.drinks;
+    const listIngredients = listIngredientsData.meals || listIngredientsData.drinks;
     setIngredients(listIngredients);
   }, [isFood]);
 
   useEffect(() => {
     setInitialData();
   }, [setInitialData]);
+
+  const handleCardClick = (ingredientName) => {
+    if (isFood) {
+      setFoods((prevState) => ({
+        ...prevState, radioSearch: 'Ingredient', searchBarValue: ingredientName,
+      }));
+      history.push('/foods');
+    } else {
+      setDrinks((prevState) => ({
+        ...prevState, radioSearch: 'Ingredient', searchBarValue: ingredientName,
+      }));
+      history.push('/drinks');
+    }
+  };
 
   return (
     <main>
@@ -44,7 +61,9 @@ export default function ExploreIngredientsScreen({ location }) {
                 ? `https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png`
                 : `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png`;
               return (
-                <div
+                <button
+                  type="button"
+                  onClick={ () => handleCardClick(strIngredient || strIngredient1) }
                   key={ isFood ? idIngredient : strIngredient1 }
                   data-testid={ `${index}-ingredient-card` }
                 >
@@ -59,7 +78,7 @@ export default function ExploreIngredientsScreen({ location }) {
                   <p className="ingredient-description">
                     {strDescription}
                   </p>
-                </div>
+                </button>
               );
             }
             return null;

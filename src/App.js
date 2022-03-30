@@ -25,8 +25,8 @@ function App() {
         {/* // temporariamente direcionando à tela de login; */}
         <Route path="/drinks/:recipeId/in-progress" component={ Login } />
         {/* // temporariamente direcionando à tela de login; */}
-        <Route path="/drinks" component={ Drinks } />
         <Route path="/favorite-recipes" component={ FavoriteRecipesScreen } />
+        <Route path="/drinks" component={ Drinks } />
         <Route path="/foods" component={ Foods } />
         <Route path="/profile" component={ ProfileScreen } />
         <Route path="/explore/foods/ingredients" component={ ExploreIngredientsScreen } />
