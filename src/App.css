@@ -114,3 +114,33 @@ img {
   padding: 0 0 0 10px;
   width: 355px;
 }
+
+.footer-menu {
+  background-color: #0fa36b;
+  bottom: 0;
+  display: flex;
+  height: 40px;
+  justify-content: space-around;
+  left: 0;
+  position: fixed;
+  right: 0;
+  width: 360px;
+}
+
+.foods-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 500px;
+  width: 360px;
+}
+
+.foods-container button {
+  background-color: #46464640;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  height: 20px;
+  margin: 3px;
+  padding: 4px;
+  width: auto;
+}

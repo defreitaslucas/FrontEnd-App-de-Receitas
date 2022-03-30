@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import Header from '../component/Header';
+import FooterMenu from '../component/FooterMenu';
 
 function Drinks() {
   const { drinksList, drinksCategories, selectedDrinksCategory, setDrinks,
@@ -81,6 +82,7 @@ function Drinks() {
       >
         Remover Filtro
       </button>
+      <FooterMenu />
     </div>
   );
 }
