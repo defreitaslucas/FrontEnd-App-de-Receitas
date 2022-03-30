@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function ExploreRecipesScreen({ location }) {
+export default function ExploreRecipesScreen({ location, history }) {
   const isFood = location.pathname.includes('foods');
+  const isFoodStr = isFood ? 'foods' : 'drinks';
   return (
     <main>
       <header>
         <nav>
-          <button type="button" data-testid="explore-by-ingredient">
+          <button
+            type="button"
+            data-testid="explore-by-ingredient"
+            onClick={ () => history.push(`/explore/${isFoodStr}/ingredients`) }
+          >
             By Ingredient
           </button>
           { isFood && (

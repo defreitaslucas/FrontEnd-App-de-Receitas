@@ -30,8 +30,11 @@ function App() {
         <Route path="/profile" component={ ProfileScreen } />
         <Route path="/explore/foods" component={ ExploreRecipesScreen } />
         <Route path="/explore/drinks" component={ ExploreRecipesScreen } />
-        <Route path="/explore/food/ingredients" component={ ExploreIngredientsScreen } />
-        <Route path="/explore/drink/ingredients" component={ ExploreIngredientsScreen } />
+        <Route path="/explore/foods/ingredients" component={ ExploreIngredientsScreen } />
+        <Route
+          path="/explore/drinks/ingredients"
+          component={ ExploreIngredientsScreen }
+        />
         <Route path="/explore" component={ ExploreScreen } />
         <Route path="/" component={ Login } />
         {/*  <Route path="/" component={} />
