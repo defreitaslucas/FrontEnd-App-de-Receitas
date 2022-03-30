@@ -32,7 +32,7 @@ function Foods() {
 
   return (
     <div>
-      <Header title="foods" />
+      <Header title="Foods" />
       {
         (foodsList.length > 0)
           ? (

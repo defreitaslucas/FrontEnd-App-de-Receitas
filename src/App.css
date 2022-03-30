@@ -66,20 +66,51 @@
   }
 }
 
+.header-container {
+  background-color: #0fa36b;
+}
+
 .header-component {
   align-items: center;
-  background-color: #0fa36b;
   display: flex;
   justify-content: space-around;
 }
 
 .header-component button {
-  background-color: #0fa36a00;
+  background-color: #808d8800;
   border: none;
   border-radius: 5px;
   box-sizing: border-box;
 }
 
+img {
+  width: 30px;
+}
+
 .header-component img {
   width: 18px;
+}
+
+.search-bar--input-radio {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.search-bar--input-radio button {
+  background-color: #085739;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: white;
+}
+
+.search-bar--input-text {
+  border: none;
+  border-radius: 15px;
+  margin: 2px;
+  padding: 0 0 0 10px;
+  width: 355px;
 }

@@ -31,7 +31,7 @@ function Drinks() {
 
   return (
     <div>
-      <Header title="drinks" />
+      <Header title="Drinks" />
       {
         (drinksList.length > 0)
           ? (
