@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { fetchRandomMeal } from '../services/fetchMealsDetails';
 import { fetchRandomCocktail } from '../services/fetchCocktail';
+import FooterMenu from '../component/FooterMenu';
+import Header from '../component/Header';
 
 export default function ExploreRecipesScreen({ location, history }) {
   const isFood = location.pathname.includes('foods');
   const isFoodStr = isFood ? 'foods' : 'drinks';
+  const isFoodTitle = isFood ? 'Foods' : 'Drinks';
 
   const handleSurpriseBtnClick = async () => {
     if (isFood) {
@@ -19,6 +22,7 @@ export default function ExploreRecipesScreen({ location, history }) {
 
   return (
     <main>
+      <Header title={ `Explore ${isFoodTitle}` } />
       <header>
         <nav>
           <button
@@ -47,6 +51,7 @@ export default function ExploreRecipesScreen({ location, history }) {
         </nav>
       </header>
       ExploreRecipesScreen
+      <FooterMenu />
     </main>
   );
 }
