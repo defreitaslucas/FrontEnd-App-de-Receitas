@@ -27,7 +27,7 @@ function Header({ title }) {
           />
         </Link>
         <h2 data-testid="page-title">{title}</h2>
-        { title === 'Foods' || title === 'Explore Nationalities'
+        { title === 'Foods' || title === 'Drinks' || title === 'Explore Nationalities'
           ? (
             <button type="button" onClick={ handleClick }>
               <img
