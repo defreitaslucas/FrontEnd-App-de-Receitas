@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getUserData } from '../helpers/localStorage';
+import FooterMenu from '../component/FooterMenu';
 
 export default function ProfileScreen({ history }) {
   const [userData, setUserData] = useState('');
@@ -40,6 +41,7 @@ export default function ProfileScreen({ history }) {
           Logout
         </button>
       </header>
+      <FooterMenu />
     </main>
   );
 }
