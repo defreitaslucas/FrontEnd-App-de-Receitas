@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../component/Header';
 // import { getFavoriteRecipes } from '../helpers/localStorage';
 
 export default function FavoriteRecipesScreen() {
@@ -23,6 +24,7 @@ export default function FavoriteRecipesScreen() {
 
   return (
     <main id="favorite-recipes-main" className="favorite-recipes-main">
+      <Header title="Favorite Recipes" />
       <nav>
         <button
           type="button"

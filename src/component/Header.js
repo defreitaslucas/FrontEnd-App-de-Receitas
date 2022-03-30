@@ -26,7 +26,7 @@ function Header({ title }) {
             alt="icone de perfil"
           />
         </Link>
-        <h2 data-testid="page-title">{title}</h2>
+        <h4 data-testid="page-title">{title}</h4>
         { title === 'Foods' || title === 'Drinks' || title === 'Explore Nationalities'
           ? (
             <button type="button" onClick={ handleClick }>

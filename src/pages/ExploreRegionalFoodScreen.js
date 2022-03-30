@@ -7,12 +7,8 @@ import MyContext from '../context/MyContext';
 import './ExploreIngredientsScreen.css';
 import Header from '../component/Header';
 
-export default function ExploreRegionalFoodScreen({ history }) {
-  const { setFoods, setDrinks, foodsList, foodsCategories, selectedFoodsCategory,
-  } = useContext(MyContext);
-
-  console.log(setDrinks, setFoods, history, foodsList,
-    foodsCategories, selectedFoodsCategory);
+export default function ExploreRegionalFoodScreen() {
+  const { foodsList } = useContext(MyContext);
 
   const [nationalities, setNationalities] = useState([]);
   const [foodByNationality, setFoodByNationality] = useState([]);
