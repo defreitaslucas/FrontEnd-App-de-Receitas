@@ -76,7 +76,6 @@ export default function DrinkDetailsScreen(props) {
 
   return (
     <main>
-      {console.log(drinkDetails)}
       <h1 data-testid="recipe-title">
         { drinkDetails.strDrink ?? drinkDetails.strGlass }
       </h1>

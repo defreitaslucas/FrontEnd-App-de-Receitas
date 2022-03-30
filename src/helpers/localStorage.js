@@ -29,7 +29,6 @@ export const saveFavoriteRecipe = (recipeData) => {
 
 export const checkRecipeFavoritness = (recipeID) => {
   const favoriteRecipes = getFavoriteRecipes();
-  // console.log('AAAAAAAAAAA', favoriteRecipes[0]);
   if (favoriteRecipes.some(({ id }) => id === recipeID)) return true;
   return false;
 };

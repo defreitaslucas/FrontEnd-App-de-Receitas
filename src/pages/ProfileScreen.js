@@ -8,15 +8,14 @@ export default function ProfileScreen({ history }) {
   useEffect(() => {
     const userStoredData = getUserData();
     setUserData(userStoredData);
-    console.log(userStoredData);
   }, [setUserData]);
 
   return (
     <main id="profile-page" className="profile-page">
       <header>
-        <p data-testid="profile-email">
+        <h2 data-testid="profile-email">
           { userData.email }
-        </p>
+        </h2>
         <button
           type="button"
           data-testid="profile-done-btn"
