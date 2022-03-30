@@ -83,6 +83,10 @@
   box-sizing: border-box;
 }
 
+img {
+  width: 30px;
+}
+
 .header-component img {
   width: 18px;
 }
@@ -109,8 +113,4 @@
   margin: 2px;
   padding: 0 0 0 10px;
   width: 355px;
-}
-
-img {
-  width: 30px;
 }

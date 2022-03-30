@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../component/Header';
 import MyContext from '../context/MyContext';
+import Header from '../component/Header';
 
 function Foods() {
   const {
