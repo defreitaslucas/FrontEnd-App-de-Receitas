@@ -10,6 +10,9 @@ import FoodDetailsScreen from './pages/FoodDetailsScreen';
 import DrinkDetailsScreen from './pages/DrinkDetailsScreen';
 import FavoriteRecipesScreen from './pages/FavoriteRecipesScreen';
 import ProfileScreen from './pages/ProfileScreen';
+import ExploreScreen from './pages/ExploreScreen';
+import ExploreRecipesScreen from './pages/ExploreRecipesScreen';
+import ExploreIngredientsScreen from './pages/ExploreIngredientsScreen';
 
 function App() {
   return (
@@ -25,6 +28,12 @@ function App() {
         <Route path="/favorite-recipes" component={ FavoriteRecipesScreen } />
         <Route path="/foods" component={ Foods } />
         <Route path="/profile" component={ ProfileScreen } />
+        <Route path="/explore" component={ ExploreScreen } />
+        <Route path="/explore/foods" component={ ExploreRecipesScreen } />
+        <Route path="/explore/drinks" component={ ExploreRecipesScreen } />
+        <Route path="/explore/food/ingredients" component={ ExploreIngredientsScreen } />
+        <Route path="/explore/drink/ingredients" component={ ExploreIngredientsScreen } />
+        {/* /explore/foods */}
         <Route path="/" component={ Login } />
         {/*  <Route path="/" component={} />
         <Route path="/" component={} /> */}
