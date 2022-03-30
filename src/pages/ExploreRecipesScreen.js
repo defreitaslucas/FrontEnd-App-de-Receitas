@@ -1,9 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { fetchRandomMeal } from '../services/fetchMealsDetails';
+import { fetchRandomCocktail } from '../services/fetchCocktail';
 
 export default function ExploreRecipesScreen({ location, history }) {
   const isFood = location.pathname.includes('foods');
   const isFoodStr = isFood ? 'foods' : 'drinks';
+
+  const handleSurpriseBtnClick = async () => {
+    if (isFood) {
+      const randomMeal = await fetchRandomMeal();
+      history.push(`/${isFoodStr}/${randomMeal.idMeal}`);
+    } else {
+      const randomDrink = await fetchRandomCocktail();
+      history.push(`/${isFoodStr}/${randomDrink.idDrink}`);
+    }
+  };
+
   return (
     <main>
       <header>
@@ -16,11 +29,19 @@ export default function ExploreRecipesScreen({ location, history }) {
             By Ingredient
           </button>
           { isFood && (
-            <button type="button" data-testid="explore-by-nationality">
+            <button
+              type="button"
+              data-testid="explore-by-nationality"
+              onClick={ () => history.push('/explore/foods/nationalities') }
+            >
               By Nationality
             </button>
           )}
-          <button type="button" data-testid="explore-surprise">
+          <button
+            type="button"
+            data-testid="explore-surprise"
+            onClick={ handleSurpriseBtnClick }
+          >
             Surprise me!
           </button>
         </nav>
