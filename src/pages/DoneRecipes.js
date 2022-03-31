@@ -7,6 +7,7 @@ import searchIcon from '../images/shareIcon.svg';
 
 function DoneRecipes() {
   const history = useHistory();
+  const { pathname } = history.location;
   const { doneRecipesList, setDoneRecipesList } = useContext(MyContext);
 
   function addFilter(type) {
@@ -64,7 +65,7 @@ function DoneRecipes() {
         (doneRecipesList.length > 0)
           ? (
             doneRecipesList.map((recipe, index) => (
-              (history.location.pathname.includes('foods'))
+              (pathname.includes('foods'))
                 ? (
                   <div key={ index }>
                     <Link to={ `/foods/${recipe.idMeal}` }>
@@ -86,22 +87,22 @@ function DoneRecipes() {
                     </p>
                     {
                       recipe.strTags.split(',').filter((_el, i) => i < 2)
-                        .map((tagName, i) => (
+                        .map((tag, i) => (
                           <p
                             key={ i }
-                            data-testid={ `${i}-${tagName}-horizontal-tag` }
+                            data-testid={ `${i}-${tag}-horizontal-tag` }
                           >
-                            { tagName }
+                            { tag }
                           </p>
                         ))
                     }
                     <Clipboard
-                      textToCopy={ `http://localhost${history.location.pathname}` }
+                      text={ `http://localhost${pathname}` }
                       image={ searchIcon }
                       name={ recipe.strMeal }
                       data-testid={ `${index}-horizontal-share-btn` }
                     >
-                      Compartilhar a receita
+                      Compartilhar a Receita
                     </Clipboard>
                   </div>
                 )
@@ -122,12 +123,12 @@ function DoneRecipes() {
                       Data em que a receita foi feita
                     </p>
                     <Clipboard
-                      textToCopy={ `http://localhost${history.location.pathname}` }
+                      text={ `http://localhost${pathname}` }
                       image={ searchIcon }
                       name={ recipe.strDrink }
                       data-testid={ `${index}-horizontal-share-btn` }
                     >
-                      Compartilhar a receita
+                      Compartilhar a Receita
                     </Clipboard>
                   </div>
                 )

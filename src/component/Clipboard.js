@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'copy-to-clipboard';
 
-function Clipboard({ textToCopy, image, name }) {
+function Clipboard({ text, image, name }) {
   function copyToClipboard() {
-    copy(textToCopy);
+    copy(text);
     window.alert('Link copied!');
   }
 
@@ -19,7 +19,7 @@ function Clipboard({ textToCopy, image, name }) {
 }
 
 Clipboard.propTypes = {
-  textToCopy: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };

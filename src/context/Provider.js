@@ -38,17 +38,6 @@ function Provider({ children }) {
       }));
     }
     getFoodsList();
-    async function getDrinksList() {
-      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-      const data = await response.json();
-      const twelveFirstDrinks = data.drinks.filter((_el, i) => i < TWELVE);
-      setDrinks((prevState) => ({
-        ...prevState,
-        drinksList: twelveFirstDrinks,
-        renderedDrinksList: twelveFirstDrinks,
-      }));
-    }
-    getDrinksList();
     async function getFoodsCategories() {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
       const data = await response.json();
@@ -60,6 +49,20 @@ function Provider({ children }) {
       }));
     }
     getFoodsCategories();
+  }, []);
+
+  useEffect(() => {
+    async function getDrinksList() {
+      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+      const data = await response.json();
+      const twelveFirstDrinks = data.drinks.filter((_el, i) => i < TWELVE);
+      setDrinks((prevState) => ({
+        ...prevState,
+        drinksList: twelveFirstDrinks,
+        renderedDrinksList: twelveFirstDrinks,
+      }));
+    }
+    getDrinksList();
     async function getDrinksCategories() {
       const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
       const data = await response.json();
@@ -81,6 +84,14 @@ function Provider({ children }) {
       const newFoodsList = data.meals.filter((_el, i) => i < TWELVE);
       setFoods((prevState) => ({ ...prevState, renderedFoodsList: newFoodsList }));
     }
+    if (foods.selectedCategory.length > 0) {
+      getSelectedFoods();
+    } else {
+      setFoods((prevState) => ({ ...prevState, renderedFoodsList: foods.foodsList }));
+    }
+  }, [foods.selectedCategory, foods.foodsList]);
+
+  useEffect(() => {
     async function getSelectedDrinks() {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drinks.selectedCategory}`;
       const response = await fetch(url);
@@ -88,19 +99,12 @@ function Provider({ children }) {
       const newDrinksList = data.drinks.filter((_el, i) => i < TWELVE);
       setDrinks((prevState) => ({ ...prevState, renderedDrinksList: newDrinksList }));
     }
-    if (foods.selectedCategory.length > 0) {
-      getSelectedFoods();
-    } else {
-      setFoods((prevState) => ({ ...prevState, renderedFoodsList: foods.foodsList }));
-    }
     if (drinks.selectedCategory.length > 0) {
       getSelectedDrinks();
     } else {
       setDrinks((prevState) => ({ ...prevState, renderedDrinksList: drinks.drinksList }));
     }
-  }, [
-    foods.selectedCategory, drinks.selectedCategory, foods.foodsList, drinks.drinksList,
-  ]);
+  }, [drinks.selectedCategory, drinks.drinksList]);
 
   useEffect(() => {
     async function getHeaderSelectedFoods() {

@@ -43,3 +43,10 @@ export const fetchRandomMeal = async () => {
   const mealData = await response.json();
   return mealData.meals[0];
 };
+
+export const fetchMealByArea = async (area) => {
+  const url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`;
+  const response = await fetch(url);
+  const mealsData = await response.json();
+  return mealsData.meals;
+};
