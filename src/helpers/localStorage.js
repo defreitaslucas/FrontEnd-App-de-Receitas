@@ -31,3 +31,12 @@ export const checkRecipeFavoritness = (recipeID) => {
   if (favoriteRecipes.some(({ id }) => id === recipeID)) return true;
   return false;
 };
+
+export const getRecipeIngredients = (id, type) => {
+  const inProgressRecipes = getInProgressRecipes()[type];
+  console.log(inProgressRecipes);
+  const inProgressRecipesIds = Object.keys(getInProgressRecipes()[type]);
+  const verifyRecipeId = inProgressRecipesIds.find((itemId) => itemId === id);
+  if (verifyRecipeId) return inProgressRecipes[id];
+  return [];
+};

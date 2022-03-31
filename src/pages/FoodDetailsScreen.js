@@ -75,7 +75,6 @@ export default function FoodDetailsScreen(props) {
 
   return (
     <main>
-      {console.log(foodDetails)}
       <h1 data-testid="recipe-title">
         { foodDetails.strMeal }
       </h1>

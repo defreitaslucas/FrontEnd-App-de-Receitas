@@ -8,6 +8,7 @@ import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
 import FoodDetailsScreen from './pages/FoodDetailsScreen';
 import DrinkDetailsScreen from './pages/DrinkDetailsScreen';
+import RecipesInProgress from './pages/RecipesInProgress';
 
 function App() {
   return (
@@ -23,9 +24,9 @@ function App() {
           path="/foods/:recipeId"
           render={ (props) => <FoodDetailsScreen { ...props } /> }
         />
-        <Route path="/foods/:recipeId/in-progress" component={ Login } />
+        <Route path="/foods/:recipeId/in-progress" component={ RecipesInProgress } />
         {/* // temporariamente direcionando à tela de login; */}
-        <Route path="/drinks/:recipeId/in-progress" component={ Login } />
+        <Route path="/drinks/:recipeId/in-progress" component={ RecipesInProgress } />
         {/* // temporariamente direcionando à tela de login; */}
         <Route path="/drinks" component={ Drinks } />
         <Route path="/foods" component={ Foods } />
