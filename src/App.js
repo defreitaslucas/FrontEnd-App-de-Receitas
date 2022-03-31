@@ -14,34 +14,42 @@ import ExploreScreen from './pages/ExploreScreen';
 import ExploreRecipesScreen from './pages/ExploreRecipesScreen';
 import ExploreIngredientsScreen from './pages/ExploreIngredientsScreen';
 import ExploreRegionalFoodScreen from './pages/ExploreRegionalFoodScreen';
+import Error404 from './pages/Error404';
 
 function App() {
   return (
     <Provider>
       <Switch>
+        <Route exact path="/" component={ Login } />
         <Route exact path="/drinks/:recipeId" component={ DrinkDetailsScreen } />
         <Route exact path="/foods/:recipeId" component={ FoodDetailsScreen } />
-        <Route path="/foods/:recipeId/in-progress" component={ Login } />
+        <Route exact path="/foods/:recipeId/in-progress" component={ Login } />
         {/* // temporariamente direcionando à tela de login; */}
-        <Route path="/drinks/:recipeId/in-progress" component={ Login } />
+        <Route exact path="/drinks/:recipeId/in-progress" component={ Login } />
         {/* // temporariamente direcionando à tela de login; */}
-        <Route path="/drinks" component={ Drinks } />
-        <Route path="/favorite-recipes" component={ FavoriteRecipesScreen } />
-        <Route path="/foods" component={ Foods } />
-        <Route path="/profile" component={ ProfileScreen } />
-        <Route path="/explore/foods/ingredients" component={ ExploreIngredientsScreen } />
+        <Route exact path="/favorite-recipes" component={ FavoriteRecipesScreen } />
+        <Route exact path="/drinks" component={ Drinks } />
+        <Route exact path="/foods" component={ Foods } />
+        <Route exact path="/profile" component={ ProfileScreen } />
         <Route
+          exact
+          path="/explore/foods/ingredients"
+          component={ ExploreIngredientsScreen }
+        />
+        <Route
+          exact
           path="/explore/drinks/ingredients"
           component={ ExploreIngredientsScreen }
         />
         <Route
+          exact
           path="/explore/foods/nationalities"
           component={ ExploreRegionalFoodScreen }
         />
-        <Route path="/explore/foods" component={ ExploreRecipesScreen } />
-        <Route path="/explore/drinks" component={ ExploreRecipesScreen } />
-        <Route path="/explore" component={ ExploreScreen } />
-        <Route path="/" component={ Login } />
+        <Route exact path="/explore/foods" component={ ExploreRecipesScreen } />
+        <Route exact path="/explore/drinks" component={ ExploreRecipesScreen } />
+        <Route exact path="/explore" component={ ExploreScreen } />
+        <Route path="/" component={ Error404 } />
         {/*  <Route path="/" component={} />
         <Route path="/" component={} /> */}
       </Switch>
