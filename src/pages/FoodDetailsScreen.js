@@ -139,6 +139,7 @@ export default function FoodDetailsScreen(props) {
         <object
           data={ foodDetails.strVideo }
           data-testid="video"
+          title="videos"
         >
           { `${foodDetails.strGlass} prep video isn't disponible` }
         </object>
