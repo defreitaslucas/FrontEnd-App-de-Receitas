@@ -27,12 +27,37 @@ export const saveFavoriteRecipe = (recipeData) => {
   localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
 };
 
+export const removeFavoriteRecipeById = (recipeId) => {
+  const currentFavorites = getFavoriteRecipes();
+  const filteredFavorites = currentFavorites.filter(({ id }) => id !== recipeId);
+  const newFavorites = [...filteredFavorites];
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+};
+
+export const removeFavoriteRecipeByType = (recipeType) => {
+  const currentFavorites = getFavoriteRecipes();
+  const filteredFavorites = currentFavorites.filter(({ type }) => type === recipeType);
+  const newFavorites = [...filteredFavorites];
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+};
+
 export const checkRecipeFavoritness = (recipeID) => {
   const favoriteRecipes = getFavoriteRecipes();
   if (favoriteRecipes.some(({ id }) => id === recipeID)) return true;
   return false;
 };
 
-// export const resetLocalStorage = () => {
-//   localStorage.clear();
-// };
+export const getRecipeIngredients = (id, type) => {
+  const inProgressRecipes = getInProgressRecipes()[type];
+  console.log(inProgressRecipes);
+  const inProgressRecipesIds = Object.keys(getInProgressRecipes()[type]);
+  const verifyRecipeId = inProgressRecipesIds.find((itemId) => itemId === id);
+  if (verifyRecipeId) return inProgressRecipes[id];
+  return [];
+};
+
+export const saveDoneRecipe = (recipeData) => {
+  const currentDoneRecipes = getDoneRecipes();
+  const newDoneRecipes = [...currentDoneRecipes, { ...recipeData }];
+  localStorage.setItem('doneRecipes', JSON.stringify(newDoneRecipes));
+};

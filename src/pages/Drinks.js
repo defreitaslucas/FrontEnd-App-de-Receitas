@@ -52,7 +52,7 @@ function Drinks() {
                   to={ `/drinks/${idDrink}` }
                   data-testid={ `${index}-recipe-card` }
                 >
-                  Ver detalhes
+                  Ver Detalhes
                 </Link>
               </div>
             ))
@@ -69,7 +69,7 @@ function Drinks() {
                 onClick={ () => addFilter(category) }
                 data-testid={ `${category}-category-filter` }
               >
-                {category}
+                { category }
               </button>
             ))
           )
