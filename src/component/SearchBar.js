@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React, { useState, useContext } from 'react';
 import MyContext from '../context/MyContext';
 
-function SearchBar({ page }) { // eslint-disable-line
+function SearchBar({ page }) {
   const { setFoods, setDrinks } = useContext(MyContext);
-  const [searchBarValue, setSearchBarValue] = useState(''); // eslint-disable-line
+  const [searchBarValue, setSearchBarValue] = useState('');
   const [radioSearch, setRadioSearch] = useState('');
 
   function handleChange(value) {
