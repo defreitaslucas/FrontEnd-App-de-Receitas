@@ -5,6 +5,7 @@ import { fetchMealsDetails } from '../services/fetchMealsDetails';
 import isFoodCheckStr from '../helpers';
 import MyContext from '../context/MyContext';
 import './ExploreIngredientsScreen.css';
+import FooterMenu from '../component/FooterMenu';
 
 const MAGIC_NUMBER_TWELVE = 12;
 
@@ -84,6 +85,7 @@ export default function ExploreIngredientsScreen({ location, history }) {
             return null;
           })}
       </section>
+      <FooterMenu />
     </main>
   );
 }

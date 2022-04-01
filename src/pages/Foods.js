@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import Header from '../component/Header';
 import FooterMenu from '../component/FooterMenu';
+import './RecipesList.css';
 
 function Foods() {
   const {
@@ -34,7 +35,7 @@ function Foods() {
   return (
     <>
       <Header title="Foods" />
-      <div className="foods-container">
+      <main className="foods-container">
         {
           (foodsList.length > 0)
             ? (
@@ -87,7 +88,7 @@ function Foods() {
             All
           </button>
         </nav>
-      </div>
+      </main>
       <FooterMenu />
     </>
   );

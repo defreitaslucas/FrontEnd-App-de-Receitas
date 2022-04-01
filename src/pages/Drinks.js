@@ -32,7 +32,7 @@ function Drinks() {
   }
 
   return (
-    <main className="DrinksMain">
+    <main>
       <Header title="Drinks" />
       {
         (drinksList.length > 0)
