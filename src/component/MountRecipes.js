@@ -8,11 +8,11 @@ import '../pages/DetailsScreen.css';
 import './recipeInProgress.css';
 import {
   getRecipeIngredients, saveFavoriteRecipe, getFavoriteRecipes,
-  removeFavoriteRecipeById, removeFavoriteRecipeByType,
+  removeFavoriteRecipeById, removeFavoriteRecipeByType, saveDoneRecipe,
 } from '../helpers/localStorage';
 import checkPath from '../helpers';
 
-function MountRecipes(props) {
+export default function MountRecipes(props) {
   const history = useHistory();
   const { location: { pathname } } = history;
   const isFood = checkPath(pathname);
@@ -36,15 +36,13 @@ function MountRecipes(props) {
     if (pathname.includes('drinks')) {
       const { idDrink: id, strCategory: category, strDrink: name,
         strDrinkThumb: image, strAlcoholic } = item;
-      const newObj = {
-        id,
+      const newObj = { id,
         type: 'drink',
         nationality: '',
         category,
         alcoholicOrNot: (strAlcoholic === 'Alcoholic' ? 'Alcoholic' : 'non-alcoholic'),
         name,
-        image,
-      };
+        image };
       if (favoriteRecipes.some((el) => el.id === id)) {
         removeFavoriteRecipeById(id);
       } else {
@@ -53,15 +51,13 @@ function MountRecipes(props) {
     }
     const { idMeal: id, strArea: nationality, strCategory: category,
       strMeal: name, strMealThumb: image } = item;
-    const newObj = {
-      id,
+    const newObj = { id,
       type: 'food',
       nationality,
       category,
       alcoholicOrNot: '',
       name,
-      image,
-    };
+      image };
     if (favoriteRecipes.some((el) => el.id === id)) {
       removeFavoriteRecipeById(id);
     } else {
@@ -70,12 +66,7 @@ function MountRecipes(props) {
   };
 
   const saveLocalStorage = useCallback(() => {
-    const obj = {
-      cocktails: {
-      },
-      meals: {
-      },
-    };
+    const obj = { cocktails: {}, meals: {} };
     const getLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'))
       ?? obj;
     if (didMount) getLocalStorage[isFood][recipeId] = [...arrayDrinkAndMeal];
@@ -117,22 +108,15 @@ function MountRecipes(props) {
     }
   }, [recipesInProgress, arrayDrinkAndMeal, pathname]);
 
-  useEffect(() => {
-    saveLocalStorage();
-  }, [saveLocalStorage]);
+  useEffect(() => saveLocalStorage(), [saveLocalStorage]);
 
-  const handleClicked = ({ currentTarget }) => {
-    currentTarget.classList.toggle('clicked');
-  };
+  const handleClicked = ({ currentTarget }) => currentTarget.classList.toggle('clicked');
 
   const checkedNameStorage = ({ target }) => {
     const { name, checked } = target;
     if (checked) {
       const valueChecked = name;
-      setDrinkAndMeal((prevState) => ([
-        ...prevState,
-        valueChecked,
-      ]));
+      setDrinkAndMeal((prevState) => ([...prevState, valueChecked]));
     } else {
       const noChecked = arrayDrinkAndMeal.filter((item) => item !== name);
       setDrinkAndMeal(noChecked);
@@ -140,6 +124,34 @@ function MountRecipes(props) {
   };
 
   const verifyId = (id) => favoriteRecipes.some((el) => el.id === id);
+
+  const finishRecipe = (recipe) => {
+    const today = new Date();
+    if (pathname.includes('drinks')) {
+      const { strAlcoholic } = recipe;
+      const newObj = { id: recipe.idDrink,
+        type: 'drink',
+        nationality: '',
+        category: recipe.strCategory,
+        alcoholicOrNot: (strAlcoholic === 'Alcoholic' ? 'Alcoholic' : 'non-alcoholic'),
+        name: recipe.strDrink,
+        image: recipe.strDrinkThumb,
+        doneDate: today,
+        tags: recipe.strTags };
+      saveDoneRecipe(newObj);
+    }
+    const newObj = { id: recipe.idMeal,
+      type: 'food',
+      nationality: recipe.strArea,
+      category: recipe.strCategory,
+      alcoholicOrNot: '',
+      name: recipe.strMeal,
+      image: recipe.strMealThumb,
+      doneDate: today,
+      tags: recipe.strTags };
+    saveDoneRecipe(newObj);
+    history.push('/done-recipes');
+  };
 
   return (
     <div>
@@ -219,7 +231,7 @@ function MountRecipes(props) {
               type="button"
               disabled={ isDisabled }
               data-testid="finish-recipe-btn"
-              onClick={ () => history.push('/done-recipes') }
+              onClick={ () => finishRecipe(item) }
             >
               Finalizar Receita
             </button>
@@ -236,5 +248,3 @@ MountRecipes.propTypes = {
   }).isRequired,
   recipesInProgress: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
-
-export default MountRecipes;

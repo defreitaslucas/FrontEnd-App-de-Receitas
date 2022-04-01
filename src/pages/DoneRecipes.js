@@ -1,41 +1,58 @@
-import React, { useContext } from 'react';
-/* import { Link, useHistory } from 'react-router-dom'; */
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import Header from '../component/Header';
-/* import Clipboard from '../component/Clipboard';
-import searchIcon from '../images/shareIcon.svg'; */
+import shareIcon from '../images/shareIcon.svg';
+import { getDoneRecipes } from '../helpers/localStorage';
+import './DoneRecipes.css';
 
 function DoneRecipes() {
-  /* const history = useHistory(); */
-  /* const { pathname } = history.location; */
-  const { doneRecipesList, setDoneRecipesList } = useContext(MyContext);
+  const { renderedDoneRecipesList, setDoneRecipes } = useContext(MyContext);
 
-  function addFilter(type) {
-    setDoneRecipesList((prevState) => {
-      let newDoneRecipesList = [...doneRecipesList];
-      if (type === 'foods') {
-        newDoneRecipesList = newDoneRecipesList.filter();
+  useEffect(() => {
+    const currentDoneRecipes = getDoneRecipes();
+    setDoneRecipes((prevState) => ({
+      ...prevState,
+      doneRecipes: currentDoneRecipes,
+      renderedDoneRecipesList: currentDoneRecipes,
+    }));
+  }, []);
+
+  const handleShareButtonClick = ({ currentTarget }, url) => {
+    navigator.clipboard.writeText(url);
+    currentTarget.classList.toggle('popUp-container');
+  };
+
+  const addFilter = (type) => {
+    setDoneRecipes((prevState) => {
+      let newDoneRecipesList = [...prevState.renderedDoneRecipesList];
+      if (type === 'food') {
+        newDoneRecipesList = newDoneRecipesList.filter((el) => el.type === 'food');
         return ({
           ...prevState,
           renderedDoneRecipesList: newDoneRecipesList,
         });
       }
-      if (type === 'drinks') {
-        newDoneRecipesList = newDoneRecipesList.filter();
+      if (type === 'drink') {
+        newDoneRecipesList = newDoneRecipesList.filter((el) => el.type === 'drink');
         return ({
           ...prevState,
           renderedDoneRecipesList: newDoneRecipesList,
         });
       }
     });
-  }
+  };
 
-  function removeFilter() {
-    setFoods((prevState) => ({
-      ...prevState,
-      renderedDoneRecipesList: doneRecipesList,
-    }));
-  }
+  const removeFilter = () => {
+    const currentDoneRecipes = getDoneRecipes();
+    setDoneRecipes((prevState) => {
+      const newDoneRecipesList = [...currentDoneRecipes];
+      return ({
+        ...prevState,
+        renderedDoneRecipesList: newDoneRecipesList,
+      });
+    });
+  };
 
   return (
     <div>
@@ -49,92 +66,97 @@ function DoneRecipes() {
       </button>
       <button
         type="button"
-        onClick={ () => addFilter('foods') }
+        onClick={ () => addFilter('food') }
         data-testid="filter-by-food-btn"
       >
         Foods
       </button>
       <button
         type="button"
-        onClick={ () => addFilter('drinks') }
+        onClick={ () => addFilter('drink') }
         data-testid="filter-by-drink-btn"
       >
         Drinks
       </button>
       {
-        /* (doneRecipesList.length > 0)
+        (renderedDoneRecipesList.length > 0)
           ? (
-            doneRecipesList.map((recipe, index) => (
-              (pathname.includes('foods'))
+            renderedDoneRecipesList.map((recipe, index) => (
+              (recipe.type === 'food')
                 ? (
                   <div key={ index }>
-                    <Link to={ `/foods/${recipe.idMeal}` }>
+                    <Link to={ `/foods/${recipe.id}` }>
                       <img
-                        src={ recipe.strMealThumb }
-                        alt={ recipe.strMeal }
+                        src={ recipe.image }
+                        alt={ recipe.name }
                         data-testid={ `${index}-horizontal-image` }
                       />
                       <p data-testid={ `${index}-horizontal-name` }>
-                        { recipe.strMeal }
+                        { recipe.name }
                       </p>
                     </Link>
                     <p data-testid={ `${index}-horizontal-top-text` }>
-                      { recipe.strCategory }
+                      { `${recipe.nationality} - ${recipe.category}` }
                     </p>
-                    <p>{ recipe.strArea }</p>
                     <p data-testid={ `${index}-horizontal-done-date` }>
-                      Data em que a receita foi feita
+                      { recipe.doneDate }
                     </p>
                     {
-                      recipe.strTags.split(',').filter((_el, i) => i < 2)
-                        .map((tag, i) => (
-                          <p
-                            key={ i }
-                            data-testid={ `${i}-${tag}-horizontal-tag` }
-                          >
-                            { tag }
-                          </p>
-                        ))
+                      (recipe.tags) ? recipe.tags.map((tag) => (
+                        <p
+                          key={ tag }
+                          data-testid={ `${index}-${tag}-horizontal-tag` }
+                        >
+                          { tag }
+                        </p>
+                      ))
+                        : null
                     }
-                    <Clipboard
-                      text={ `http://localhost${pathname}` }
-                      image={ searchIcon }
-                      name={ recipe.strMeal }
-                      data-testid={ `${index}-horizontal-share-btn` }
-                    >
-                      Compartilhar a Receita
-                    </Clipboard>
+                    <div className="popUp-container">
+                      <input
+                        type="image"
+                        src={ shareIcon }
+                        alt="share button"
+                        data-testid={ `${index}-horizontal-share-btn` }
+                        onClick={ (event) => handleShareButtonClick(event, `http://localhost:3000/foods/${recipe.id}`) }
+                      />
+                      <span>Link copied!</span>
+                    </div>
                   </div>
                 )
                 : (
                   <div key={ index }>
-                    <Link to={ `/drinks/${recipe.idDrink}` }>
+                    <Link to={ `/drinks/${recipe.id}` }>
                       <img
-                        src={ recipe.strDrinkThumb }
-                        alt={ recipe.strDrink }
+                        src={ recipe.image }
+                        alt={ recipe.name }
                         data-testid={ `${index}-horizontal-image` }
                       />
                       <p data-testid={ `${index}-horizontal-name` }>
-                        { recipe.strDrink }
+                        { recipe.name }
                       </p>
                     </Link>
-                    <p>{ recipe.strAlcoholic }</p>
-                    <p data-testid={ `${index}-horizontal-done-date` }>
-                      Data em que a receita foi feita
+                    <p data-testid={ `${index}-horizontal-top-text` }>
+                      { recipe.alcoholicOrNot }
                     </p>
-                    <Clipboard
-                      text={ `http://localhost${pathname}` }
-                      image={ searchIcon }
-                      name={ recipe.strDrink }
-                      data-testid={ `${index}-horizontal-share-btn` }
-                    >
-                      Compartilhar a Receita
-                    </Clipboard>
+                    <p data-testid={ `${index}-horizontal-done-date` }>
+                      { recipe.doneDate }
+                    </p>
+                    <div className="popUp-container">
+                      <input
+                        type="image"
+                        src={ shareIcon }
+                        alt="share button"
+                        data-testid={ `${index}-horizontal-share-btn` }
+                        onClick={ (event) => handleShareButtonClick(event, `http://localhost:3000/drinks/${recipe.id}`) }
+                      />
+                      <span>Link copied!</span>
+                    </div>
                   </div>
                 )
             ))
           )
-          : null */
+          : null
       }
     </div>
   );

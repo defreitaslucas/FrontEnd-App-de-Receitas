@@ -26,6 +26,11 @@ function Provider({ children }) {
     searchBarValue: '',
   });
 
+  const [doneRecipes, setDoneRecipes] = useState({
+    doneRecipesList: [],
+    renderedDoneRecipesList: [],
+  });
+
   useEffect(() => {
     async function getFoodsList() {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -167,8 +172,10 @@ function Provider({ children }) {
     drinksList: drinks.renderedDrinksList,
     drinksCategories: drinks.drinksCategories,
     selectedDrinksCategory: drinks.selectedCategory,
+    renderedDoneRecipesList: doneRecipes.renderedDoneRecipesList,
     setFoods,
     setDrinks,
+    setDoneRecipes,
   };
 
   return (

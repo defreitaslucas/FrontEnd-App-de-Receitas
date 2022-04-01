@@ -55,3 +55,9 @@ export const getRecipeIngredients = (id, type) => {
   if (verifyRecipeId) return inProgressRecipes[id];
   return [];
 };
+
+export const saveDoneRecipe = (recipeData) => {
+  const currentDoneRecipes = getDoneRecipes();
+  const newDoneRecipes = [...currentDoneRecipes, { ...recipeData }];
+  localStorage.setItem('doneRecipes', JSON.stringify(newDoneRecipes));
+};

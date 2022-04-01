@@ -59,8 +59,6 @@ function App() {
         <Route exact path="/explore/drinks" component={ ExploreRecipesScreen } />
         <Route exact path="/explore" component={ ExploreScreen } />
         <Route path="/" component={ Error404 } />
-        {/*  <Route path="/" component={} />
-        <Route path="/" component={} /> */}
       </Switch>
     </Provider>
   );
