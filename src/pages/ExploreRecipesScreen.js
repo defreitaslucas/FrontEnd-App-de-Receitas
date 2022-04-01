@@ -21,7 +21,10 @@ export default function ExploreRecipesScreen({ location, history }) {
 
   return (
     <main>
-      <Header title="Explore Nationalities" />
+      {
+        location.pathname.includes('foods')
+          ? <Header title="Explore Foods" /> : <Header title="Explore Drinks" />
+      }
       <header>
         <nav>
           <button
