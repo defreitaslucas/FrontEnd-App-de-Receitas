@@ -52,6 +52,33 @@ function App() {
         />
         <Route
           exact
+          path="/foods/:recipeId/in-progress"
+          component={ RecipesInProgress }
+        />
+        {/* // temporariamente direcionando à tela de login; */}
+        <Route
+          exact
+          path="/drinks/:recipeId/in-progress"
+          component={ RecipesInProgress }
+        />
+        {/* // temporariamente direcionando à tela de login; */}
+        <Route
+          exact
+          path="/drinks"
+          component={ Drinks }
+        />
+        <Route
+          exact
+          path="/foods"
+          component={ Foods }
+        />
+        <Route
+          exact
+          path="/"
+          component={ Login }
+        />
+        <Route
+          exact
           path="/explore/foods/nationalities"
           component={ ExploreRegionalFoodScreen }
         />

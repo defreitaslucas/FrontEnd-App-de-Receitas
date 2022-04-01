@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import Header from '../component/Header';
 import FooterMenu from '../component/FooterMenu';
+import './RecipesList.css';
 
 function Drinks() {
   const { drinksList, drinksCategories, selectedDrinksCategory, setDrinks,
@@ -31,7 +32,7 @@ function Drinks() {
   }
 
   return (
-    <div>
+    <main>
       <Header title="Drinks" />
       {
         (drinksList.length > 0)
@@ -59,31 +60,34 @@ function Drinks() {
           )
           : null
       }
-      {
-        (drinksCategories.length > 0)
-          ? (
-            drinksCategories.map((category) => (
-              <button
-                key={ category }
-                type="button"
-                onClick={ () => addFilter(category) }
-                data-testid={ `${category}-category-filter` }
-              >
-                { category }
-              </button>
-            ))
-          )
-          : null
-      }
-      <button
-        type="button"
-        onClick={ removeFilter }
-        data-testid="All-category-filter"
-      >
-        Remover Filtro
-      </button>
+      <nav className="filters-container">
+        {
+          (drinksCategories.length > 0)
+            ? (
+              drinksCategories.map((category) => (
+                <button
+                  key={ category }
+                  type="button"
+                  onClick={ () => addFilter(category) }
+                  data-testid={ `${category}-category-filter` }
+                >
+                  {category}
+                </button>
+              ))
+            )
+            : null
+        }
+        <button
+          name="All"
+          type="button"
+          onClick={ removeFilter }
+          data-testid="All-category-filter"
+        >
+          All
+        </button>
+      </nav>
       <FooterMenu />
-    </div>
+    </main>
   );
 }
 

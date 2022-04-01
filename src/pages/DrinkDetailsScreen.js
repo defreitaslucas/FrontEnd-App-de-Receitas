@@ -25,10 +25,8 @@ export default function DrinkDetailsScreen(props) {
     const drinkData = await fetchCocktailById(id);
     const ingredientsArr = Object.entries(drinkData).filter(([key, value]) => (key
       .includes('strIngredient') && value));
-    const measuresArr = Object.entries(drinkData).filter(([key, value]) => (key
-      .includes('strMeasure') && value));
     const ingredients = ingredientsArr.reduce((acc, data, index) => {
-      acc = [...acc, `${data[1]} ${measuresArr[index][1]}`];
+      acc = [...acc, `${data[1]} ${drinkData['strMeasure'.concat([index + 1])]}`];
       return acc;
     }, []);
     setIngredientList(ingredients);
@@ -143,25 +141,23 @@ export default function DrinkDetailsScreen(props) {
         <div
           className="recomendations-container"
         >
-          {recomendations.map(({ idMeal, strMealThumb, strMeal }, index) => {
-            if (index < MAGIC_NUMBER_SIX) {
-              return (
-                <div
-                  className="recomended-iten"
-                  key={ idMeal }
-                  data-testid={ `${index}-recomendation-card` }
-                >
-                  <img
-                    src={ `${strMealThumb}/preview` }
-                    alt={ `${strMeal} recomendation` }
-                  />
-                  <span data-testid={ `${index}-recomendation-title` }>
-                    { strMeal }
-                  </span>
-                </div>
-              );
-            } return null;
-          })}
+          {recomendations.map(({ idMeal, strMealThumb, strMeal }, index) => (
+            index < MAGIC_NUMBER_SIX && (
+              <div
+                className="recomended-iten"
+                key={ idMeal }
+                data-testid={ `${index}-recomendation-card` }
+              >
+                <img
+                  src={ `${strMealThumb}/preview` }
+                  alt={ `${strMeal} recomendation` }
+                />
+                <span data-testid={ `${index}-recomendation-title` }>
+                  { strMeal }
+                </span>
+              </div>
+            )
+          ))}
         </div>
       </div>
 

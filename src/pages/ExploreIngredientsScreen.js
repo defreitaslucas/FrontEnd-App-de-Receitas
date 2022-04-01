@@ -2,9 +2,11 @@ import React, { useState, useCallback, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { fetchCocktailDetails } from '../services/fetchCocktail';
 import { fetchMealsDetails } from '../services/fetchMealsDetails';
-import isFoodCheckStr from '../helpers';
+import { isFoodCheckStr } from '../helpers';
 import MyContext from '../context/MyContext';
 import './ExploreIngredientsScreen.css';
+import FooterMenu from '../component/FooterMenu';
+import Header from '../component/Header';
 
 const MAGIC_NUMBER_TWELVE = 12;
 
@@ -44,6 +46,7 @@ export default function ExploreIngredientsScreen({ location, history }) {
 
   return (
     <main>
+      <Header title="Explore Ingredients" />
       <header>
         <h1>
           { isFoodStr.toUpperCase() }
@@ -84,6 +87,7 @@ export default function ExploreIngredientsScreen({ location, history }) {
             return null;
           })}
       </section>
+      <FooterMenu />
     </main>
   );
 }
