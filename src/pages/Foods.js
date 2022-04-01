@@ -61,29 +61,32 @@ function Foods() {
             )
             : null
         }
-        {
-          (foodsCategories.length > 0)
-            ? (
-              foodsCategories.map((category) => (
-                <button
-                  key={ category }
-                  type="button"
-                  onClick={ () => addFilter(category) }
-                  data-testid={ `${category}-category-filter` }
-                >
-                  {category}
-                </button>
-              ))
-            )
-            : null
-        }
-        <button
-          type="button"
-          onClick={ removeFilter }
-          data-testid="All-category-filter"
-        >
-          Remover Filtro
-        </button>
+        <nav>
+          {
+            (foodsCategories.length > 0)
+              ? (
+                foodsCategories.map((category) => (
+                  <button
+                    key={ category }
+                    type="button"
+                    onClick={ () => addFilter(category) }
+                    data-testid={ `${category}-category-filter` }
+                  >
+                    {category}
+                  </button>
+                ))
+              )
+              : null
+          }
+          <button
+            name="All"
+            type="button"
+            onClick={ removeFilter }
+            data-testid="All-category-filter"
+          >
+            All
+          </button>
+        </nav>
       </div>
       <FooterMenu />
     </>
