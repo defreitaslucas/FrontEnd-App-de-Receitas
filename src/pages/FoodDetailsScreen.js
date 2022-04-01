@@ -61,7 +61,7 @@ export default function FoodDetailsScreen(props) {
     setIsFavorite(!isFavorite);
     const { strArea: nationality, strCategory: category,
       strMeal: name, strMealThumb } = foodDetails;
-    const image = `${strMealThumb}/preview`;
+    const image = strMealThumb;
     const newObj = {
       id,
       type: 'food',
@@ -75,7 +75,6 @@ export default function FoodDetailsScreen(props) {
 
   return (
     <main>
-      {console.log(foodDetails)}
       <h1 data-testid="recipe-title">
         { foodDetails.strMeal }
       </h1>

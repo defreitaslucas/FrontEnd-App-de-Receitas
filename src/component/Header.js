@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
+import SearchBar from './SearchBar';
 
 function Header({ title }) {
   const [searchBar, setSearchBar] = useState(false);
@@ -16,31 +17,33 @@ function Header({ title }) {
   };
 
   return (
-    <section className="header-component">
-      <Link to="/profile">
-        <img
-          data-testid="profile-top-btn"
-          src={ profileIcon }
-          alt="icone de perfil"
-        />
-      </Link>
-      <h2 data-testid="page-title">{title}</h2>
-      { title === 'foods' || title === 'explore nationalities'
-        ? (
-          <button type="button" onClick={ handleClick }>
-            <img
-              data-testid="search-top-btn"
-              src={ searchIcon }
-              alt="lupa de procura"
-            />
-          </button>
-        )
-        : null }
+    <div className="header-container">
+      <section className="header-component">
+        <Link to="/profile">
+          <img
+            data-testid="profile-top-btn"
+            src={ profileIcon }
+            alt="icone de perfil"
+          />
+        </Link>
+        <h4 data-testid="page-title">{title}</h4>
+        { title === 'Foods' || title === 'Drinks' || title === 'Explore Nationalities'
+          ? (
+            <button type="button" onClick={ handleClick }>
+              <img
+                data-testid="search-top-btn"
+                src={ searchIcon }
+                alt="lupa de procura"
+              />
+            </button>
+          )
+          : null }
+      </section>
 
       {searchBar
-        ? <input type="text" placeholder="search" />
+        ? <SearchBar page={ title } />
         : null}
-    </section>
+    </div>
   );
 }
 

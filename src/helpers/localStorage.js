@@ -7,6 +7,8 @@ export const getInProgressRecipes = () => JSON.parse(localStorage
 export const getFavoriteRecipes = () => JSON
   .parse(localStorage.getItem('favoriteRecipes')) || [];
 
+export const getUserData = () => JSON.parse(localStorage.getItem('user')) || '';
+
 export const checkRecipeProgress = (recipeID, type) => {
   try {
     const inProgressRecipes = Object.keys(getInProgressRecipes()[type]);
@@ -27,7 +29,10 @@ export const saveFavoriteRecipe = (recipeData) => {
 
 export const checkRecipeFavoritness = (recipeID) => {
   const favoriteRecipes = getFavoriteRecipes();
-  // console.log('AAAAAAAAAAA', favoriteRecipes[0]);
   if (favoriteRecipes.some(({ id }) => id === recipeID)) return true;
   return false;
 };
+
+// export const resetLocalStorage = () => {
+//   localStorage.clear();
+// };
