@@ -26,6 +26,17 @@ export const fetchRecomendedDrinks = async () => {
   }
 };
 
+export const fetchDrinksBySelectedCategory = async (selectedCategory) => {
+  const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${selectedCategory}`;
+  try {
+    const response = await fetch(url);
+    const drinkDetails = await response.json();
+    return drinkDetails.drinks;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const fetchRandomCocktail = async () => {
   const url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
   const response = await fetch(url);

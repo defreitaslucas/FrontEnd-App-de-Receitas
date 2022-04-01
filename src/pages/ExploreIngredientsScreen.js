@@ -6,6 +6,7 @@ import isFoodCheckStr from '../helpers';
 import MyContext from '../context/MyContext';
 import './ExploreIngredientsScreen.css';
 import FooterMenu from '../component/FooterMenu';
+import Header from '../component/Header';
 
 const MAGIC_NUMBER_TWELVE = 12;
 
@@ -45,6 +46,7 @@ export default function ExploreIngredientsScreen({ location, history }) {
 
   return (
     <main>
+      <Header title="Explore Nationalities" />
       <header>
         <h1>
           { isFoodStr.toUpperCase() }

@@ -55,7 +55,7 @@ function Foods() {
                     to={ `/foods/${idMeal}` }
                     data-testid={ `${index}-recipe-card` }
                   >
-                    Ver detalhes
+                    Ver Detalhes
                   </Link>
                 </div>
               ))
