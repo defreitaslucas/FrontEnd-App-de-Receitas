@@ -23,14 +23,21 @@ export default function FoodDetailsScreen(props) {
 
   const getInitialData = useCallback(async () => {
     const foodData = await fetchMealById(id);
+    // const ingredientsArr = Object.entries(foodData).filter(([key, value]) => (key
+    //   .includes('strIngredient') && value));
+    // const measuresArr = Object.entries(foodData).filter(([key, value]) => (key
+    //   .includes('strMeasure') && value));
+    // const ingredients = ingredientsArr.reduce((acc, data, index) => {
+    //   acc = [...acc, `${data[1]} ${measuresArr[index][1]}`];
+    //   return acc;
+    // }, []);
     const ingredientsArr = Object.entries(foodData).filter(([key, value]) => (key
       .includes('strIngredient') && value));
-    const measuresArr = Object.entries(foodData).filter(([key, value]) => (key
-      .includes('strMeasure') && value));
     const ingredients = ingredientsArr.reduce((acc, data, index) => {
-      acc = [...acc, `${data[1]} ${measuresArr[index][1]}`];
+      acc = [...acc, `${data[1]} ${foodData['strMeasure'.concat([index + 1])]}`];
       return acc;
     }, []);
+    setIngredientList(ingredients);
     setIngredientList(ingredients);
     setFoodDetails(foodData);
     setId(recipeId);
