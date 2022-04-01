@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import Header from '../component/Header';
 import FooterMenu from '../component/FooterMenu';
+import './RecipesList.css';
 
 function Foods() {
   const {
@@ -34,7 +35,7 @@ function Foods() {
   return (
     <>
       <Header title="Foods" />
-      <div className="foods-container">
+      <main className="foods-container">
         {
           (foodsList.length > 0)
             ? (
@@ -61,30 +62,33 @@ function Foods() {
             )
             : null
         }
-        {
-          (foodsCategories.length > 0)
-            ? (
-              foodsCategories.map((category) => (
-                <button
-                  key={ category }
-                  type="button"
-                  onClick={ () => addFilter(category) }
-                  data-testid={ `${category}-category-filter` }
-                >
-                  { category }
-                </button>
-              ))
-            )
-            : null
-        }
-        <button
-          type="button"
-          onClick={ removeFilter }
-          data-testid="All-category-filter"
-        >
-          Remover Filtro
-        </button>
-      </div>
+        <nav>
+          {
+            (foodsCategories.length > 0)
+              ? (
+                foodsCategories.map((category) => (
+                  <button
+                    key={ category }
+                    type="button"
+                    onClick={ () => addFilter(category) }
+                    data-testid={ `${category}-category-filter` }
+                  >
+                    {category}
+                  </button>
+                ))
+              )
+              : null
+          }
+          <button
+            name="All"
+            type="button"
+            onClick={ removeFilter }
+            data-testid="All-category-filter"
+          >
+            All
+          </button>
+        </nav>
+      </main>
       <FooterMenu />
     </>
   );

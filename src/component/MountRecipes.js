@@ -10,7 +10,7 @@ import {
   getRecipeIngredients, saveFavoriteRecipe, getFavoriteRecipes,
   removeFavoriteRecipeById, removeFavoriteRecipeByType, saveDoneRecipe,
 } from '../helpers/localStorage';
-import checkPath from '../helpers';
+import { checkPath } from '../helpers';
 
 export default function MountRecipes(props) {
   const history = useHistory();
