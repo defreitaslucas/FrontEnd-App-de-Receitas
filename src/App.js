@@ -50,13 +50,33 @@ function App() {
           path="/explore/drinks/ingredients"
           component={ ExploreIngredientsScreen }
         />
-        <Route path="/foods/:recipeId/in-progress" component={ RecipesInProgress } />
+        <Route
+          exact
+          path="/foods/:recipeId/in-progress"
+          component={ RecipesInProgress }
+        />
         {/* // temporariamente direcionando à tela de login; */}
-        <Route path="/drinks/:recipeId/in-progress" component={ RecipesInProgress } />
+        <Route
+          exact
+          path="/drinks/:recipeId/in-progress"
+          component={ RecipesInProgress }
+        />
         {/* // temporariamente direcionando à tela de login; */}
-        <Route path="/drinks" component={ Drinks } />
-        <Route path="/foods" component={ Foods } />
-        <Route path="/" component={ Login } />
+        <Route
+          exact
+          path="/drinks"
+          component={ Drinks }
+        />
+        <Route
+          exact
+          path="/foods"
+          component={ Foods }
+        />
+        <Route
+          exact
+          path="/"
+          component={ Login }
+        />
         <Route
           exact
           path="/explore/foods/nationalities"

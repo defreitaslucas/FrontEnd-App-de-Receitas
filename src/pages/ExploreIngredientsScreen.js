@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { fetchCocktailDetails } from '../services/fetchCocktail';
 import { fetchMealsDetails } from '../services/fetchMealsDetails';
-import isFoodCheckStr from '../helpers';
+import { isFoodCheckStr } from '../helpers';
 import MyContext from '../context/MyContext';
 import './ExploreIngredientsScreen.css';
 import FooterMenu from '../component/FooterMenu';
