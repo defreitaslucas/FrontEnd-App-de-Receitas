@@ -201,8 +201,7 @@ export default function MountRecipes(props) {
               { ingredientList.map((ingredient, index) => (
                 <div key={ ingredient }>
                   <label
-                    htmlFor={ ingredient }
-                    // onChange={ handleClicked }
+                    htmlFor={ ingredient }                
                     className={ arrayDrinkAndMeal.includes(ingredient) ? 'clicked' : '' }
                   >
                     <li
