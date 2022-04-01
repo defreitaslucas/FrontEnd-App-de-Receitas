@@ -1,3 +1,3 @@
-const isFoodCheckStr = (includesFood) => (includesFood ? 'foods' : 'drinks');
+const checkPath = (pathname) => (pathname.includes('food') ? 'meals' : 'cocktails');
 
-export default isFoodCheckStr;
+export default checkPath;

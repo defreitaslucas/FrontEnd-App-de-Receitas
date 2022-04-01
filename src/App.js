@@ -8,6 +8,7 @@ import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
 import FoodDetailsScreen from './pages/FoodDetailsScreen';
 import DrinkDetailsScreen from './pages/DrinkDetailsScreen';
+import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipesScreen from './pages/FavoriteRecipesScreen';
 import ProfileScreen from './pages/ProfileScreen';
 import ExploreScreen from './pages/ExploreScreen';
@@ -15,6 +16,7 @@ import ExploreRecipesScreen from './pages/ExploreRecipesScreen';
 import ExploreIngredientsScreen from './pages/ExploreIngredientsScreen';
 import ExploreRegionalFoodScreen from './pages/ExploreRegionalFoodScreen';
 import Error404 from './pages/Error404';
+import RecipesInProgress from './pages/RecipesInProgress';
 
 function App() {
   return (
@@ -23,14 +25,21 @@ function App() {
         <Route exact path="/" component={ Login } />
         <Route exact path="/drinks/:recipeId" component={ DrinkDetailsScreen } />
         <Route exact path="/foods/:recipeId" component={ FoodDetailsScreen } />
-        <Route exact path="/foods/:recipeId/in-progress" component={ Login } />
-        {/* // temporariamente direcionando à tela de login; */}
-        <Route exact path="/drinks/:recipeId/in-progress" component={ Login } />
-        {/* // temporariamente direcionando à tela de login; */}
+        <Route exact path="/done-recipes" component={ DoneRecipes } />
         <Route exact path="/favorite-recipes" component={ FavoriteRecipesScreen } />
         <Route exact path="/drinks" component={ Drinks } />
         <Route exact path="/foods" component={ Foods } />
         <Route exact path="/profile" component={ ProfileScreen } />
+        <Route
+          exact
+          path="/foods/:recipeId/in-progress"
+          component={ RecipesInProgress }
+        />
+        <Route
+          exact
+          path="/drinks/:recipeId/in-progress"
+          component={ RecipesInProgress }
+        />
         <Route
           exact
           path="/explore/foods/ingredients"
@@ -50,8 +59,6 @@ function App() {
         <Route exact path="/explore/drinks" component={ ExploreRecipesScreen } />
         <Route exact path="/explore" component={ ExploreScreen } />
         <Route path="/" component={ Error404 } />
-        {/*  <Route path="/" component={} />
-        <Route path="/" component={} /> */}
       </Switch>
     </Provider>
   );

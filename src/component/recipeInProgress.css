@@ -1,0 +1,9 @@
+label * {
+  display: inline;
+}
+
+.clicked li {
+  border: none solid black;
+  text-decoration: line-through;
+}
+

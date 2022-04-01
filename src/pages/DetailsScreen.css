@@ -12,7 +12,7 @@ main {
 }
 
 .recomendations-container img {
-  width: 50vw;
+  width: 100px;
 }
 
 .start-recipe-btn {
@@ -54,3 +54,4 @@ button .favorited {
 .favorite-btn .no-favorited {
   display: none;
 }
+
