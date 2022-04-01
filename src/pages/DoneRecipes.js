@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+/* import { Link, useHistory } from 'react-router-dom'; */
 import MyContext from '../context/MyContext';
 import Header from '../component/Header';
-import Clipboard from '../component/Clipboard';
-import searchIcon from '../images/shareIcon.svg';
+/* import Clipboard from '../component/Clipboard';
+import searchIcon from '../images/shareIcon.svg'; */
 
 function DoneRecipes() {
-  const history = useHistory();
-  const { pathname } = history.location;
+  /* const history = useHistory(); */
+  /* const { pathname } = history.location; */
   const { doneRecipesList, setDoneRecipesList } = useContext(MyContext);
 
   function addFilter(type) {
@@ -62,7 +62,7 @@ function DoneRecipes() {
         Drinks
       </button>
       {
-        (doneRecipesList.length > 0)
+        /* (doneRecipesList.length > 0)
           ? (
             doneRecipesList.map((recipe, index) => (
               (pathname.includes('foods'))
@@ -134,7 +134,7 @@ function DoneRecipes() {
                 )
             ))
           )
-          : null
+          : null */
       }
     </div>
   );
