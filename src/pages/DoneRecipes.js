@@ -16,7 +16,7 @@ function DoneRecipes() {
       doneRecipes: currentDoneRecipes,
       renderedDoneRecipesList: currentDoneRecipes,
     }));
-  }, []);
+  }, [setDoneRecipes]);
 
   const handleShareButtonClick = ({ currentTarget }, url) => {
     navigator.clipboard.writeText(url);
