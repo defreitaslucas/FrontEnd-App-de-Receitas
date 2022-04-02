@@ -55,7 +55,7 @@ function FavoriteRecipes() {
 
   return (
     <div>
-      <Header title="Done Recipes" />
+      <Header title="Favorite Recipes" />
       <button
         type="button"
         onClick={ removeFilter }
