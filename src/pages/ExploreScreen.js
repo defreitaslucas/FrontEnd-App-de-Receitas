@@ -6,7 +6,7 @@ import Header from '../component/Header';
 export default function ExploreScreen({ history: { push } }) {
   return (
     <main>
-      <Header title="Explore Nationalities" />
+      <Header title="Explore" />
       <button
         type="button"
         data-testid="explore-foods"

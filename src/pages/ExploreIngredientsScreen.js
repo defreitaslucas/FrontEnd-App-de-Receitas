@@ -46,7 +46,7 @@ export default function ExploreIngredientsScreen({ location, history }) {
 
   return (
     <main>
-      <Header title="Explore Nationalities" />
+      <Header title="Explore Ingredients" />
       <header>
         {console.log(location.pathname.includes('foods'))}
         <h1>
