@@ -12,7 +12,7 @@ const MAGIC_NUMBER_TWELVE = 12;
 
 export default function ExploreIngredientsScreen({ location, history }) {
   const isFood = location.pathname.includes('foods');
-  const isFoodStr = isFoodCheckStr();
+  const isFoodStr = isFoodCheckStr(isFood);
 
   const { setFoods, setDrinks } = useContext(MyContext);
 
@@ -48,6 +48,7 @@ export default function ExploreIngredientsScreen({ location, history }) {
     <main>
       <Header title="Explore Ingredients" />
       <header>
+        {console.log(location.pathname.includes('foods'))}
         <h1>
           { isFoodStr.toUpperCase() }
           {' '}
