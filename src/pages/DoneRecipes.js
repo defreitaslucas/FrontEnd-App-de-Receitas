@@ -4,7 +4,6 @@ import MyContext from '../context/MyContext';
 import Header from '../component/Header';
 import shareIcon from '../images/shareIcon.svg';
 import { getDoneRecipes } from '../helpers/localStorage';
-import './DoneRecipes.css';
 
 function DoneRecipes() {
   const { renderedDoneRecipesList, setDoneRecipes } = useContext(MyContext);

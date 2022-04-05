@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { fetchMealByArea, fetchMealsDetails } from '../services/fetchMealsDetails';
 import FooterMenu from '../component/FooterMenu';
 import MyContext from '../context/MyContext';
-import './ExploreIngredientsScreen.css';
 import Header from '../component/Header';
 
 export default function ExploreRegionalFoodScreen() {

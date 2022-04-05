@@ -7,7 +7,6 @@ import { checkRecipeFavoritness, checkRecipeProgress,
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
-import './DetailsScreen.css';
 
 const MAGIC_NUMBER_SIX = 6;
 

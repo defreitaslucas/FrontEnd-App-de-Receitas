@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import './Styles/Login.css';
 
 const MAGIC_NUMBER_SIX = 6;
 function Login({ history }) {
@@ -42,33 +43,33 @@ function Login({ history }) {
   };
 
   return (
-    <div>
-      <h1>
-        Login
-      </h1>
-      <label htmlFor="email-input">
-        <p>Email</p>
-        <input
-          type="email"
-          data-testid="email-input"
-          name="email"
-          value={ login.email }
-          onChange={ handleChangeLogin }
-          id="email-input"
-        />
-      </label>
-      <label htmlFor="password-input">
-        <p>Senha</p>
-        <input
-          type="password"
-          data-testid="password-input"
-          name="password"
-          value={ login.password }
-          onChange={ handleChangeLogin }
-          id="password-input"
-        />
-      </label>
-      <div>
+    <div className="login-page">
+      <div className="login-page--form">
+        <h1>
+          Login
+        </h1>
+        <label htmlFor="email-input">
+          <p>Email</p>
+          <input
+            type="email"
+            data-testid="email-input"
+            name="email"
+            value={ login.email }
+            onChange={ handleChangeLogin }
+            id="email-input"
+          />
+        </label>
+        <label htmlFor="password-input">
+          <p>Senha</p>
+          <input
+            type="password"
+            data-testid="password-input"
+            name="password"
+            value={ login.password }
+            onChange={ handleChangeLogin }
+            id="password-input"
+          />
+        </label>
         <button
           type="submit"
           data-testid="login-submit-btn"
