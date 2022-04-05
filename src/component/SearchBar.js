@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState, useContext } from 'react';
 import MyContext from '../context/MyContext';
+import './Styles/SearchBar.css';
 
 function SearchBar({ page }) {
   const { setFoods, setDrinks } = useContext(MyContext);
@@ -29,40 +30,13 @@ function SearchBar({ page }) {
 
   return (
     <form className="search-bar">
-      <input
-        data-testid="search-input"
-        className="search-bar--input-text"
-        type="text"
-        placeholder="search"
-        onChange={ ({ target }) => setSearchBarValue(target.value) }
-      />
-      <section className="search-bar--input-radio">
-        Ingredients
+      <div className="search-bar--line-button">
         <input
-          data-testid="ingredient-search-radio"
-          id="Ingredient"
-          name="radioSearch"
-          type="radio"
-          value="Ingredient"
-          onChange={ ({ target }) => handleChange(target.value) }
-        />
-        Name
-        <input
-          data-testid="name-search-radio"
-          id="Name"
-          name="radioSearch"
-          type="radio"
-          value="Name"
-          onChange={ ({ target }) => handleChange(target.value) }
-        />
-        First Letter
-        <input
-          data-testid="first-letter-search-radio"
-          id="First Letter"
-          name="radioSearch"
-          type="radio"
-          value="First Letter"
-          onChange={ ({ target }) => handleChange(target.value) }
+          data-testid="search-input"
+          className="search-bar--input-text"
+          type="text"
+          placeholder="search"
+          onChange={ ({ target }) => setSearchBarValue(target.value) }
         />
         <button
           data-testid="exec-search-btn"
@@ -72,6 +46,41 @@ function SearchBar({ page }) {
         >
           search
         </button>
+      </div>
+      <section className="search-bar--input-radio">
+        <div>
+          Ingredients
+          <input
+            data-testid="ingredient-search-radio"
+            id="Ingredient"
+            name="radioSearch"
+            type="radio"
+            value="Ingredient"
+            onChange={ ({ target }) => handleChange(target.value) }
+          />
+        </div>
+        <div>
+          Name
+          <input
+            data-testid="name-search-radio"
+            id="Name"
+            name="radioSearch"
+            type="radio"
+            value="Name"
+            onChange={ ({ target }) => handleChange(target.value) }
+          />
+        </div>
+        <div>
+          First Letter
+          <input
+            data-testid="first-letter-search-radio"
+            id="First Letter"
+            name="radioSearch"
+            type="radio"
+            value="First Letter"
+            onChange={ ({ target }) => handleChange(target.value) }
+          />
+        </div>
       </section>
     </form>
   );

@@ -1,0 +1,22 @@
+.header-container {
+  background-color: #3a39393d;
+  padding: 8px;
+}
+
+.header-container--section-icons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header-container input {
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  line-height: 30px;
+  padding-left: 8px;
+}
+
+.header-container--button-magnifier {
+  background-color: hsla(0, 0%, 100%, 0);
+  border: none;
+}

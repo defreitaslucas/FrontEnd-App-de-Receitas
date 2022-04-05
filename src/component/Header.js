@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import SearchBar from './SearchBar';
+import './Styles/Header.css';
 
 function Header({ title }) {
   const [searchBar, setSearchBar] = useState(false);
@@ -18,7 +19,7 @@ function Header({ title }) {
 
   return (
     <div className="header-container">
-      <section className="header-component">
+      <section className="header-container--section-icons">
         <Link to="/profile">
           <img
             data-testid="profile-top-btn"
@@ -29,7 +30,11 @@ function Header({ title }) {
         <h4 data-testid="page-title">{title}</h4>
         { title === 'Foods' || title === 'Drinks' || title === 'Explore Nationalities'
           ? (
-            <button type="button" onClick={ handleClick }>
+            <button
+              className="header-container--button-magnifier"
+              type="button"
+              onClick={ handleClick }
+            >
               <img
                 data-testid="search-top-btn"
                 src={ searchIcon }
