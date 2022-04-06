@@ -7,6 +7,7 @@ import { checkRecipeFavoritness, checkRecipeProgress,
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import './Styles/DetailScreen.css';
 
 const MAGIC_NUMBER_SIX = 6;
 
@@ -74,17 +75,18 @@ export default function DrinkDetailsScreen(props) {
   };
 
   return (
-    <main>
-      <h1 data-testid="recipe-title">
-        { drinkDetails.strDrink ?? drinkDetails.strGlass }
-      </h1>
-      <h3 data-testid="recipe-category">
-        {drinkDetails.strAlcoholic}
-        {' '}
-        { drinkDetails.strCategory }
-      </h3>
+    <main className="detail-screen-container">
+      <div className="detail-screen-container--title">
+        <h1 data-testid="recipe-title">
+          { drinkDetails.strDrink ?? drinkDetails.strGlass }
+        </h1>
+        <h3 data-testid="recipe-category">
+          {drinkDetails.strAlcoholic}
+          { drinkDetails.strCategory }
+        </h3>
+      </div>
 
-      <nav>
+      <nav className="detail-screen-container--like">
         <button
           type="button"
           data-testid="share-btn"
@@ -103,42 +105,55 @@ export default function DrinkDetailsScreen(props) {
           className={ isFavorite ? 'favorite-btn' : '' }
         >
           <img
-            src={ whiteHeart }
-            alt="a empty heart. click to favorite this recipe"
-            className="no-favorited"
-          />
-          <img
-            src={ blackHeart }
-            alt="a filld heart. click to unfavorite this recipe"
-            className="favorited"
+            src={ isFavorite ? blackHeart : whiteHeart }
+            alt="a filld heart. click to unfavorite and favorite this recipe"
+            className={ isFavorite ? 'favorited' : 'no-favorited' }
           />
         </button>
       </nav>
 
-      <div>
-        <img
-          src={ `${drinkDetails.strDrinkThumb}/preview` }
-          alt={ `${drinkDetails.strDrink ?? drinkDetails.strGlass} preview` }
-          data-testid="recipe-photo"
-        />
-      </div>
+      <div className="detail-screen--recipe">
+        <div>
+          <img
+            src={ `${drinkDetails.strDrinkThumb}/preview` }
+            alt={ `${drinkDetails.strDrink ?? drinkDetails.strGlass} preview` }
+            data-testid="recipe-photo"
+          />
+        </div>
 
-      <div>
-        <ol>
-          INGREDIENTES:
-          { ingredientList.map((ingredient, index) => (
-            <li key={ ingredient } data-testid={ `${index}-ingredient-name-and-measure` }>
-              {ingredient}
-            </li>
-          )) }
-        </ol>
-        <p data-testid="instructions">
-          { drinkDetails.strInstructions }
-        </p>
+        <div>
+          <ol>
+            <h4>INGREDIENTS:</h4>
+            { ingredientList.map((ingredient, index) => (
+              <li
+                key={ ingredient }
+                data-testid={ `${index}-ingredient-name-and-measure` }
+              >
+                {ingredient}
+              </li>
+            )) }
+          </ol>
+          <p data-testid="instructions">
+            { drinkDetails.strInstructions }
+          </p>
+        </div>
+        {recipeProgress === 'done'
+          ? 'Nice Job!!'
+          : (
+            <button
+              className="start-recipe-btn"
+              type="button"
+              data-testid="start-recipe-btn"
+              name="Start Recipe"
+              onClick={ handleStartButtonClick }
+            >
+              { recipeProgress === 'new' ? 'Start Recipe' : 'Continue Recipe' }
+            </button>)}
       </div>
-
-      <div>
-        Recomended recipes:
+      <div className="detail-screen--recomended-recipes">
+        <h5>
+          Recomended recipes:
+        </h5>
         <div
           className="recomendations-container"
         >
@@ -164,18 +179,6 @@ export default function DrinkDetailsScreen(props) {
         </div>
       </div>
 
-      {recipeProgress === 'done'
-        ? 'Nice Job!!'
-        : (
-          <button
-            className="start-recipe-btn"
-            type="button"
-            data-testid="start-recipe-btn"
-            name="Start Recipe"
-            onClick={ handleStartButtonClick }
-          >
-            { recipeProgress === 'new' ? 'Start Recipe' : 'Continue Recipe' }
-          </button>)}
     </main>
   );
 }
