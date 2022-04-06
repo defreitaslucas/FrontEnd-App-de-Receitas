@@ -2,6 +2,7 @@
   background-color: #222121;
   color: antiquewhite;
   height: 100vh;
+  overflow-y: scroll;
   padding: 4px;
 }
 
