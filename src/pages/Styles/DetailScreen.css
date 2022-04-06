@@ -54,9 +54,9 @@
 }
 
 .detail-screen--recipe li {
-  font-size: 14px;
+  font-size: 12px;
   margin: 0 auto;
-  width: 136px;
+  width: 150px;
 }
 
 .detail-screen--recipe img {
