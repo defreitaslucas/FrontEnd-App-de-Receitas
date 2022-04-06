@@ -33,11 +33,6 @@
   width: 106px;
 }
 
-.foods-container--card:hover, .foods-container--card:in-range {
-  border-left: 3px solid #999b84;
-  border-right: 3px solid #999b84;
-}
-
 .foods-container--detail-view {
   display: none;
 }
