@@ -121,10 +121,11 @@ export default function FoodDetailsScreen(props) {
         </div>
 
         <div>
-          <ol className="ingredients-container">
+          <ol>
             INGREDIENTES:
             { ingredientList.map((ingredient, index) => (
               <li
+                className="ingredients-container"
                 key={ ingredient }
                 data-testid={ `${index}-ingredient-name-and-measure` }
               >

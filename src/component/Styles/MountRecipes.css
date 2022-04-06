@@ -1,0 +1,47 @@
+.mount-recipes-container--card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.recipe-image {
+  border: 2px solid #976f1a5d;
+  border-radius: 100%;
+  width: 280px;
+}
+
+.popUp {
+  display: none;
+}
+
+.mount-recipes-ingredients {
+  font-size: 14px;
+}
+
+button {
+  background-color: #999b848e;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 4px;
+  width: 120px;
+}
+
+button img {
+  margin: 2px;
+  width: 20px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.input-ul {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 160px;
+}

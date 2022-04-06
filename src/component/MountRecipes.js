@@ -9,6 +9,7 @@ import {
   removeFavoriteRecipeById, removeFavoriteRecipeByType, saveDoneRecipe,
 } from '../helpers/localStorage';
 import checkPath from '../helpers';
+import './Styles/MountRecipes.css';
 
 export default function MountRecipes(props) {
   const history = useHistory();
@@ -152,21 +153,13 @@ export default function MountRecipes(props) {
   };
 
   return (
-    <div>
-      {
-        recipesInProgress && recipesInProgress.map((item) => (
-          <div key={ item.idDrink || item.idMeal }>
-            <img
-              src={ item.strDrinkThumb || item.strMealThumb }
-              alt="Foto Drink"
-              data-testid="recipe-photo"
-            />
-            <h2 data-testid="recipe-title">{item.strDrink || item.strMeal}</h2>
-            <h3 data-testid="recipe-category">
-              {item.strAlcoholic}
-              {' '}
-              {item.strCategory }
-            </h3>
+    <div className="mount-recipes-container">
+      { recipesInProgress && recipesInProgress.map((item) => (
+        <div
+          key={ item.idDrink || item.idMeal }
+          className="mount-recipes-container--card"
+        >
+          <div className="mount-recipes-container--card--link">
             <button
               type="button"
               data-testid="share-btn"
@@ -184,58 +177,64 @@ export default function MountRecipes(props) {
               className={ verifyId(item.idDrink || item.idMeal) ? 'favorite-btn' : '' }
             >
               <img
-                src={ whiteHeart }
-                alt="a empty heart. click to favorite this recipe"
-                className="no-favorited"
+                src={ isFavorite ? blackHeart : whiteHeart }
+                alt="a filld heart. click to unfavorite and favorite this recipe"
+                className={ isFavorite ? 'favorited' : 'no-favorited' }
               />
-              <img
-                src={ blackHeart }
-                alt="a filld heart. click to unfavorite this recipe"
-                className="favorited"
-              />
-            </button>
-            <ol>
-              INGREDIENTES:
-              { ingredientList.map((ingredient, index) => (
-                <div key={ ingredient }>
-                  <label
-                    htmlFor={ ingredient }
-                    // onChange={ handleClicked }
-                    className={ arrayDrinkAndMeal.includes(ingredient) ? 'clicked' : '' }
-                  >
-                    <li
-                      data-testid={ `${index}-ingredient-step` }
-                    >
-                      <input
-                        type="checkbox"
-                        name={ ingredient }
-                        id={ ingredient }
-                        onClick={ (event) => {
-                          checkedNameStorage(event);
-                          handleClicked(event);
-                        } }
-                        checked={ arrayDrinkAndMeal.includes(ingredient) }
-                      />
-                      {ingredient}
-                    </li>
-                  </label>
-                </div>
-              )) }
-            </ol>
-            <p data-testid="instructions">
-              { item.strInstructions }
-            </p>
-            <button
-              type="button"
-              disabled={ isDisabled }
-              data-testid="finish-recipe-btn"
-              onClick={ () => finishRecipe(item) }
-            >
-              Finalizar Receita
             </button>
           </div>
-        ))
-      }
+          <img
+            src={ item.strDrinkThumb || item.strMealThumb }
+            alt="Foto Drink"
+            data-testid="recipe-photo"
+            className="recipe-image"
+          />
+          <h2 data-testid="recipe-title">{item.strDrink || item.strMeal}</h2>
+          <h3 data-testid="recipe-category">
+            {item.strAlcoholic}
+            {item.strCategory }
+          </h3>
+          <ol className="mount-recipes-ingredients">
+            <h3>INGREDIENTS:</h3>
+            { ingredientList.map((ingredient, index) => (
+              <div key={ ingredient }>
+                <label
+                  htmlFor={ ingredient }
+                  className={ arrayDrinkAndMeal.includes(ingredient) ? 'clicked' : '' }
+                >
+                  <ul
+                    className="input-ul"
+                    data-testid={ `${index}-ingredient-step` }
+                  >
+                    <input
+                      type="checkbox"
+                      name={ ingredient }
+                      id={ ingredient }
+                      onClick={ (event) => {
+                        checkedNameStorage(event);
+                        handleClicked(event);
+                      } }
+                      checked={ arrayDrinkAndMeal.includes(ingredient) }
+                    />
+                    {ingredient}
+                  </ul>
+                </label>
+              </div>
+            )) }
+          </ol>
+          <p data-testid="instructions">
+            { item.strInstructions }
+          </p>
+          <button
+            type="button"
+            disabled={ isDisabled }
+            data-testid="finish-recipe-btn"
+            onClick={ () => finishRecipe(item) }
+          >
+            Finalizar Receita
+          </button>
+        </div>
+      ))}
     </div>
   );
 }
