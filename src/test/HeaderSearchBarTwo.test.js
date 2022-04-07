@@ -66,12 +66,12 @@ describe('17 - Testing the cards if there are two or more recipes', () => {
     const renderedInfo = await screen.findAllByText(/soup/i);
     expect(renderedInfo[0]).toBeInTheDocument();
     soupMeals.meals.forEach((_meal, index) => {
-      const recipeCard = screen.getByTestId(`${index}-recipe-card`);
-      const cardImg = screen.getByTestId(`${index}-card-img`);
-      const cardName = screen.getByTestId(`${index}-card-name`);
-      expect(recipeCard).toBeInTheDocument();
-      expect(cardImg).toBeInTheDocument();
-      expect(cardName).toBeInTheDocument();
+      const mealRecipeCard = screen.getByTestId(`${index}-recipe-card`);
+      const mealCardImg = screen.getByTestId(`${index}-card-img`);
+      const mealCardName = screen.getByTestId(`${index}-card-name`);
+      expect(mealRecipeCard).toBeInTheDocument();
+      expect(mealCardImg).toBeInTheDocument();
+      expect(mealCardName).toBeInTheDocument();
     });
   });
 
@@ -88,13 +88,13 @@ describe('17 - Testing the cards if there are two or more recipes', () => {
     userEvent.click(execSearchBtn);
     const renderedInfo = await screen.findAllByText(/gin/i);
     expect(renderedInfo[0]).toBeInTheDocument();
-    soupMeals.meals.forEach((_meal, index) => {
-      const recipeCard = screen.getByTestId(`${index}-recipe-card`);
-      const cardImg = screen.getByTestId(`${index}-card-img`);
-      const cardName = screen.getByTestId(`${index}-card-name`);
-      expect(recipeCard).toBeInTheDocument();
-      expect(cardImg).toBeInTheDocument();
-      expect(cardName).toBeInTheDocument();
+    soupMeals.meals.forEach((_drink, index) => {
+      const drinkRecipeCard = screen.getByTestId(`${index}-recipe-card`);
+      const drinkCardImg = screen.getByTestId(`${index}-card-img`);
+      const drinkCardName = screen.getByTestId(`${index}-card-name`);
+      expect(drinkRecipeCard).toBeInTheDocument();
+      expect(drinkCardImg).toBeInTheDocument();
+      expect(drinkCardName).toBeInTheDocument();
     });
   });
 });

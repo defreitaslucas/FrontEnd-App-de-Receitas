@@ -6,10 +6,10 @@ import App from '../App';
 
 const chickenMeals = require('../../cypress/mocks/chickenMeals');
 const soupMeals = require('../../cypress/mocks/soupMeals');
-const firstLetterYMeals = require('./firstLetterYMeals');
-const orangeDrinks = require('./orangeDrinks');
+const firstLetterYMeals = require('../../cypress/mocks/firstLetterYMeals');
+const orangeDrinks = require('../../cypress/mocks/orangeDrinks');
 const ginDrinks = require('../../cypress/mocks/ginDrinks');
-const firstLetterYDrinks = require('./firstLetterYDrinks');
+const firstLetterYDrinks = require('../../cypress/mocks/firstLetterYDrinks');
 
 const searchTopBtnId = 'search-top-btn';
 const ingredientSearchRadioId = 'ingredient-search-radio';
