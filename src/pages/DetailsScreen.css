@@ -31,17 +31,9 @@ main {
   overflow: auto;
 }
 
-/* .popUp-container {
-
-} */
-
 .popUp-container span {
   display: none;
 }
-
-/* .popUp-container .popUp {
-
-} */
 
 button .favorited {
   display: none;

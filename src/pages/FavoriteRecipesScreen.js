@@ -8,6 +8,8 @@ import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 import './FavoriteRecipesScreen.css';
 
+const copy = require('clipboard-copy');
+
 const FAV_RECIPES_BTN_CLASSNAME = 'favorite-btn';
 
 function FavoriteRecipes() {
@@ -21,8 +23,11 @@ function FavoriteRecipes() {
   }, [setRefFavoriteRecipes]);
 
   const handleShareButtonClick = ({ currentTarget }, url) => {
-    navigator.clipboard.writeText(url);
-    currentTarget.classList.toggle('popUp-container');
+    // navigator.clipboard.writeText(url);
+    copy(url);
+    currentTarget.parentElement.classList.toggle('popUp-container');
+    // !!!!! essa função e o botão que a recebe devem ser refatoradas. Adicionaei um 'parentElement' pois a mensagem do link não estava aparecento. Acho valido atualizar o funcionamento dessa função em todos os componentes que a utilizam; talvez para não usar classes.
+    // !!!!!!! ~~~~~~ Uma forma de facilitar o processo acima entre outros é componentizar o card dos alimentos!!!!
   };
 
   const addFilter = (filterType) => {
@@ -81,7 +86,6 @@ function FavoriteRecipes() {
         toRenderFavoriteRecipesList.map((recipe, index) => (
           (
             <div key={ index }>
-              {console.log(recipe)}
               <button
                 type="button"
                 data-testid={ `${index}-horizontal-favorite-btn` }
@@ -90,6 +94,7 @@ function FavoriteRecipes() {
                 className={ checkRecipeFavoritness(recipe.id)
                   ? FAV_RECIPES_BTN_CLASSNAME : '' }
               >
+                {/* refatorar essa estrutura tanto nessa tela e nas telas de detalhes para usar apenas uma img com o src e o texto e tudo mais condicionado como no src do btn */}
                 <img
                   src={ whiteHeart }
                   alt="a empty heart. click to favorite this recipe"
@@ -143,7 +148,7 @@ function FavoriteRecipes() {
                     ? (event) => handleShareButtonClick(event, `http://localhost:3000/foods/${recipe.id}`)
                     : (event) => handleShareButtonClick(event, `http://localhost:3000/drinks/${recipe.id}`) }
                 />
-                <span>Link copied!</span>
+                <span className="popUp">Link copied!</span>
               </div>
             </div>
           )

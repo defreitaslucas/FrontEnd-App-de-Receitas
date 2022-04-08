@@ -74,7 +74,10 @@ export default function ExploreIngredientsScreen({ location, history }) {
                   <img
                     data-testid={ `${index}-card-img` }
                     src={ img }
-                    alt={ `${strIngredient}; click to see recipes with this ingredient` }
+                    alt={
+                      `${strIngredient || strIngredient1}
+                      ; click to see recipes with this ingredient`
+                    }
                   />
                   <h4 data-testid={ `${index}-card-name` }>
                     {strIngredient || strIngredient1}
