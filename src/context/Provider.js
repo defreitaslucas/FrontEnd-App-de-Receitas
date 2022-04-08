@@ -129,7 +129,7 @@ function Provider({ children }) {
         }
         setFoods((prevState) => ({ ...prevState, renderedFoodsList: newFoodsList }));
       } catch (error) {
-        window.alert('Sorry, we haven\'t found any recipes for these filters.');
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
         setFoods((prevState) => ({ ...prevState, renderedFoodsList: [] }));
       }
     }
@@ -156,7 +156,7 @@ function Provider({ children }) {
         }
         setDrinks((prevState) => ({ ...prevState, renderedDrinksList: newDrinksList }));
       } catch (error) {
-        window.alert('Sorry, we haven\'t found any recipes for these filters.');
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
         setDrinks((prevState) => ({ ...prevState, renderedDrinksList: [] }));
       }
     }
