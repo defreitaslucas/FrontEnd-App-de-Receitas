@@ -170,7 +170,6 @@ describe('Testing the Favorite Screen', () => {
 
     // expect(navigator.clipboard.value).toBe('');
 
-    // !!!!!!!!!!!!!!OOOOOOOOOOOOOOOOOO VER O LINK QUE MANDEI NO MEU SLACK para fazer com o copy [RESOLVIDO][Projeto App de Receitas][Testes][Mock da Função Copy]
     userEvent.click(firstElementShareBtn);
     // expect(await findByText('Link copied!')).toBeInTheDocument(); !!! ESSE TESTE SÓ PODERÁ SER FEITO ADEQUADAMENTE COM UMA MUDANÇA EM COMO ESTÁ SENDO REGULADA A APARIÇÃO OU NÃO DO TEXTO. CRIAR O COMPONENTE CARD E COLOCAR AQUELAS FUNÇÕES DE ADICIONAR AO FAVORITO E DE COMPARTILHAR DIRETO NESSES COMPONENTES. MESMO COM "display: none", O ELEMENTO AINDA É CONSIDERADO COMO DENTRO
     expect(await findAllByText('Link copied!')).toBeTruthy();
