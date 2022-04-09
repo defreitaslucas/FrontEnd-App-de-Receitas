@@ -12,6 +12,7 @@ const FOOD_SHARE_BTN_ID = '0-horizontal-share-btn';
 const FOOD_NAME_ID = '0-horizontal-name';
 
 const DRINK_NAME_ID = '1-horizontal-name';
+const DRINK_SHARE_BTN_ID = '1-horizontal-share-btn';
 
 describe('Testing the Favorite Screen', () => {
   const doneRecipes = [
@@ -71,7 +72,7 @@ describe('Testing the Favorite Screen', () => {
     const secondElementImg = await findByTestId('1-horizontal-image');
     const secondElementTxt = await findByTestId('1-horizontal-top-text');
     const secondElementName = await findByTestId(DRINK_NAME_ID);
-    const secondElementShareBtn = await findByTestId('1-horizontal-share-btn');
+    const secondElementShareBtn = await findByTestId(DRINK_SHARE_BTN_ID);
     const secondElementDoneData = await findByTestId('1-horizontal-done-date');
 
     const elementsArr = [foodFilterBtn, drinkFilterBtn, clearFilterBtn, firstElementImg,
@@ -116,7 +117,7 @@ describe('Testing the Favorite Screen', () => {
     const secondElementImg = await findByTestId('1-horizontal-image');
     const secondElementTxt = await findByTestId('1-horizontal-top-text');
     const secondElementName = await findByTestId(DRINK_NAME_ID);
-    const secondElementShareBtn = await findByTestId('1-horizontal-share-btn');
+    const secondElementShareBtn = await findByTestId(DRINK_SHARE_BTN_ID);
     const secondElementDoneData = await findByTestId('1-horizontal-done-date');
 
     expect(secondElementImg).toHaveProperty('src', doneRecipes[1].image);
@@ -136,12 +137,18 @@ describe('Testing the Favorite Screen', () => {
     history.push(DONE_SCREEN_PATH);
 
     const firstElementShareBtn = await findByTestId(FOOD_SHARE_BTN_ID);
+    const secondElementShareBtn = await findByTestId(DRINK_SHARE_BTN_ID);
 
     userEvent.click(firstElementShareBtn);
     // expect(await findByText('Link copied!')).toBeInTheDocument(); !!! ESSE TESTE SÓ PODERÁ SER FEITO ADEQUADAMENTE COM UMA MUDANÇA EM COMO ESTÁ SENDO REGULADA A APARIÇÃO OU NÃO DO TEXTO. CRIAR O COMPONENTE CARD E COLOCAR AQUELAS FUNÇÕES DE ADICIONAR AO FAVORITO E DE COMPARTILHAR DIRETO NESSES COMPONENTES. MESMO COM "display: none", O ELEMENTO AINDA É CONSIDERADO COMO DENTRO
     expect(await findAllByText('Link copied!')).toBeTruthy();
     expect(copy).toHaveBeenCalledTimes(1);
     expect(copy).toHaveBeenCalledWith('http://localhost:3000/foods/52771');
+
+    userEvent.click(secondElementShareBtn);
+    // expect(await findByText('Link copied!')).toBeInTheDocument(); !!! ESSE TESTE SÓ PODERÁ SER FEITO ADEQUADAMENTE COM UMA MUDANÇA EM COMO ESTÁ SENDO REGULADA A APARIÇÃO OU NÃO DO TEXTO. CRIAR O COMPONENTE CARD E COLOCAR AQUELAS FUNÇÕES DE ADICIONAR AO FAVORITO E DE COMPARTILHAR DIRETO NESSES COMPONENTES. MESMO COM "display: none", O ELEMENTO AINDA É CONSIDERADO COMO DENTRO
+    expect(copy).toHaveBeenCalledTimes(2);
+    expect(copy).toHaveBeenCalledWith('http://localhost:3000/drinks/178319');
   });
   //   expect(mockCopy)
   //     .toHaveBeenCalledWith('http://localhost:3000/foods/52771');
@@ -173,12 +180,12 @@ describe('Testing the Favorite Screen', () => {
     expect(allElementsName).toHaveLength(2);
   });
 
-  // it('66 - Check if the food, drink and all filters are working properly', async () => {
-  //   const { history, findByTestId } = renderWithRouter(<App />);
-  //   history.push(DONE_SCREEN_PATH);
-  //   const firstElementName = await findByTestId(FOOD_NAME_ID);
-  //   userEvent.click(firstElementName);
-  //   expect(history.location.pathname).toBe('/foods/52771');
-  // });
+  it('59 - Check if the food, drink and all filters are working properly', async () => {
+    const { history, findByTestId } = renderWithRouter(<App />);
+    history.push(DONE_SCREEN_PATH);
+    const firstElementName = await findByTestId(FOOD_NAME_ID);
+    userEvent.click(firstElementName);
+    expect(history.location.pathname).toBe('/foods/52771');
+  });
 });
 // ~~~~~!!!!!! criar componente que guarda receitas removidas recentemente e verificar se ela guarda por apenas 7 dias (como simular passagem de tempo aqui? usar um tempo menor para testar e depois definir um maior? o tempo tem que ser feito usando o timestamp ou a data de exclusão (newData) (ou talvez usando um setTimeout))
