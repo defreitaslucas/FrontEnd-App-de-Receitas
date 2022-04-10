@@ -188,4 +188,3 @@ describe('Testing the Favorite Screen', () => {
     expect(history.location.pathname).toBe('/foods/52771');
   });
 });
-// ~~~~~!!!!!! criar componente que guarda receitas removidas recentemente e verificar se ela guarda por apenas 7 dias (como simular passagem de tempo aqui? usar um tempo menor para testar e depois definir um maior? o tempo tem que ser feito usando o timestamp ou a data de exclusão (newData) (ou talvez usando um setTimeout))

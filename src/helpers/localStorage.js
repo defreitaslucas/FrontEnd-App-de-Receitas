@@ -1,5 +1,9 @@
-export const getDoneRecipes = () => JSON.parse(localStorage.getItem('doneRecipes'))
-  || [];
+export const getDoneRecipes = () => JSON.parse(localStorage.getItem('doneRecipes')
+  || JSON.stringify([]));
+
+// !!!!!!!!!!!!!!!! Consertar os demais getItem. A condicional deve ser dentro do JSON.parse ou ele quebra (ao menos no teste)!!!!!!!
+// export const getDoneRecipes = () => JSON.parse(localStorage.getItem('doneRecipes'))
+//   || [];
 
 export const getInProgressRecipes = () => JSON.parse(localStorage
   .getItem('inProgressRecipes')) || { cocktails: '', meals: '' };

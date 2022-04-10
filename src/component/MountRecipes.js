@@ -12,6 +12,8 @@ import {
 } from '../helpers/localStorage';
 import { checkPath } from '../helpers';
 
+const copy = require('clipboard-copy');
+
 export default function MountRecipes(props) {
   const history = useHistory();
   const { location: { pathname } } = history;
@@ -27,7 +29,7 @@ export default function MountRecipes(props) {
 
   const handleShareButtonClick = ({ currentTarget }) => {
     const newPathname = pathname.replace('/in-progress', '');
-    navigator.clipboard.writeText(`http://localhost:3000${newPathname}`);
+    copy(`http://localhost:3000${newPathname}`);
     currentTarget.classList.toggle('popUp-container');
   };
 
@@ -160,7 +162,7 @@ export default function MountRecipes(props) {
           <div key={ item.idDrink || item.idMeal }>
             <img
               src={ item.strDrinkThumb || item.strMealThumb }
-              alt="Foto Drink"
+              alt={ item.strDrink || item.strMeal }
               data-testid="recipe-photo"
             />
             <h2 data-testid="recipe-title">{item.strDrink || item.strMeal}</h2>
@@ -232,7 +234,7 @@ export default function MountRecipes(props) {
               data-testid="finish-recipe-btn"
               onClick={ () => finishRecipe(item) }
             >
-              Finalizar Receita
+              Finish Recipe
             </button>
           </div>
         ))
@@ -240,7 +242,6 @@ export default function MountRecipes(props) {
     </div>
   );
 }
-
 MountRecipes.propTypes = {
   idRecipes: PropTypes.shape({
     recipeId: PropTypes.string,
