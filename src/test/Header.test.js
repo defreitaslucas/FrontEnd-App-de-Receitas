@@ -14,7 +14,7 @@ const profileIcon = 'http://localhost/profileIcon.svg';
 const searchIcon = 'http://localhost/searchIcon.svg';
 
 describe('9 - Testing the Header elements', () => {
-  it('Has all elements, as described ', () => {
+  it('Has all elements, as described', () => {
     renderWithRouter(<Header title="Foods" />);
     const profileTopBtn = screen.getByTestId(profileTopBtnId);
     const pageTitle = screen.getByTestId(pageTitleId);
