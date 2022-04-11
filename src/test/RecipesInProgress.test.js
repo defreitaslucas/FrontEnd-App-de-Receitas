@@ -17,7 +17,7 @@ const INPROGRESS_DRINKS_SCREEN_PATH = '/drinks/178319/in-progress';
 const mockMeal = oneMeal.meals[0];
 const mockDrink = oneDrink.drinks[0];
 
-describe('Testing the Favorite Screen', () => {
+describe('Testing the Recipe Progress Screen', () => {
   const favoriteRecipes = [
     {
       id: '52771',

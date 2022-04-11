@@ -9,6 +9,8 @@ import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 import './DetailsScreen.css';
 
+const copy = require('clipboard-copy');
+
 const MAGIC_NUMBER_SIX = 6;
 
 export default function FoodDetailsScreen(props) {
@@ -60,7 +62,8 @@ export default function FoodDetailsScreen(props) {
 
   const handleShareButtonClick = ({ currentTarget }) => {
     const { location: { pathname } } = props;
-    navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
+    // navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
+    copy(`http://localhost:3000${pathname}`);
     currentTarget.classList.toggle('popUp-container');
   };
 
