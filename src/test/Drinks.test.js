@@ -4,46 +4,46 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../utils/renderWithRouter';
 import App from '../App';
 
-const meals = require('../../cypress/mocks/meals');
-const mealCategories = require('../../cypress/mocks/mealCategories');
-const beefMeals = require('../../cypress/mocks/beefMeals');
-const breakfastMeals = require('../../cypress/mocks/breakfastMeals');
+const drinks = require('../../cypress/mocks/drinks');
+const drinkCategories = require('../../cypress/mocks/drinkCategories');
+const ordinaryDrinks = require('../../cypress/mocks/ordinaryDrinks');
+const cocktailDrinks = require('../../cypress/mocks/cocktailDrinks');
 
 const TWELVE = 12;
-const mealsList = meals.meals.filter((_el, i) => i < TWELVE);
+const drinksList = drinks.drinks.filter((_el, i) => i < TWELVE);
 
 afterEach(() => {
   jest.restoreAllMocks();
 });
 
 describe('25 - Testing the cards', () => {
-  it('Testing in Foods', async () => {
+  it('Testing in Drinks', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/foods');
+    history.push('/drinks');
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(meals),
+      json: jest.fn().mockResolvedValue(drinks),
     });
     const renderedInfo = await screen.findAllByText(/Ver Detalhes/i);
     expect(renderedInfo[0]).toBeInTheDocument();
-    mealsList.forEach((_meal, index) => {
-      const mealRecipeCard = screen.getByTestId(`${index}-recipe-card`);
-      const mealCardImg = screen.getByTestId(`${index}-card-img`);
-      const mealCardName = screen.getByTestId(`${index}-card-name`);
-      expect(mealRecipeCard).toBeInTheDocument();
-      expect(mealCardImg).toBeInTheDocument();
-      expect(mealCardName).toBeInTheDocument();
+    drinksList.forEach((_drink, index) => {
+      const drinkRecipeCard = screen.getByTestId(`${index}-recipe-card`);
+      const drinkCardImg = screen.getByTestId(`${index}-card-img`);
+      const drinkCardName = screen.getByTestId(`${index}-card-name`);
+      expect(drinkRecipeCard).toBeInTheDocument();
+      expect(drinkCardImg).toBeInTheDocument();
+      expect(drinkCardName).toBeInTheDocument();
     });
   });
 });
 
 describe('26 - Testing the recipes list', () => {
-  it('Testing in Foods', async () => {
+  it('Testing in Drinks', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/foods');
+    history.push('/drinks');
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(meals),
+      json: jest.fn().mockResolvedValue(drinks),
     });
     const renderedInfo = await screen.findAllByText(/Ver Detalhes/i);
     expect(renderedInfo).toHaveLength(TWELVE);
@@ -55,13 +55,13 @@ describe('26 - Testing the recipes list', () => {
 describe('27 - Testing the category filter buttons', () => {
   it('Has all buttons, as described', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/foods');
+    history.push('/drinks');
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(mealCategories),
+      json: jest.fn().mockResolvedValue(drinkCategories),
     });
     waitForElement(() => {
-      mealCategories.meals.forEach(({ strCategory }) => {
+      drinkCategories.drinks.forEach(({ strCategory }) => {
         const categoryName = screen.getByTestId(`${strCategory}-category-filter`);
         expect(categoryName).toBeInTheDocument();
       });
@@ -72,57 +72,57 @@ describe('27 - Testing the category filter buttons', () => {
 });
 
 describe('28 - Testing the category filter', () => {
-  it('Testing the Beef', async () => {
+  it('Testing the Ordinary Drink', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/foods');
+    history.push('/drinks');
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(mealCategories),
+      json: jest.fn().mockResolvedValue(drinkCategories),
     });
-    const beefCategory = await screen.findByTestId('Beef-category-filter');
-    userEvent.click(beefCategory);
+    const ordinaryCategory = await screen.findByTestId('Ordinary Drink-category-filter');
+    userEvent.click(ordinaryCategory);
     waitForElement(() => {
-      beefMeals.meals.forEach(({ strMeal }) => {
-        const mealName = screen.getByText(`${strMeal}`);
-        expect(mealName).toBeInTheDocument();
+      ordinaryDrinks.drinks.forEach(({ strDrink }) => {
+        const drinkName = screen.getByText(`${strDrink}`);
+        expect(drinkName).toBeInTheDocument();
       });
     });
   });
 });
 
 describe('29 - Testing the category filter', () => {
-  it('Testing the Beef', async () => {
+  it('Testing the Ordinary Drink', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/foods');
+    history.push('/drinks');
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(beefMeals),
+      json: jest.fn().mockResolvedValue(ordinaryDrinks),
     });
-    const beefCategory = await screen.findByTestId('Beef-category-filter');
-    userEvent.click(beefCategory);
+    const ordinaryCategory = await screen.findByTestId('Ordinary Drink-category-filter');
+    userEvent.click(ordinaryCategory);
     waitForElement(() => {
-      meals.meals.forEach(({ strMeal }) => {
-        const mealName = screen.getByText(`${strMeal}`);
-        expect(mealName).toBeInTheDocument();
+      drinks.drinks.forEach(({ strDrink }) => {
+        const drinkName = screen.getByText(`${strDrink}`);
+        expect(drinkName).toBeInTheDocument();
       });
     });
   });
 });
 
 describe('30 - Testing the category filter', () => {
-  it('Testing the Breakfast', async () => {
+  it('Testing the Cocktail', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/foods');
+    history.push('/drinks');
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(beefMeals),
+      json: jest.fn().mockResolvedValue(ordinaryDrinks),
     });
-    const breakfastCategory = await screen.findByTestId('Breakfast-category-filter');
-    userEvent.click(breakfastCategory);
+    const cocktailCategory = await screen.findByTestId('Cocktail-category-filter');
+    userEvent.click(cocktailCategory);
     waitForElement(() => {
-      breakfastMeals.meals.forEach(({ strMeal }) => {
-        const mealName = screen.getByText(`${strMeal}`);
-        expect(mealName).toBeInTheDocument();
+      cocktailDrinks.drinks.forEach(({ strDrink }) => {
+        const drinkName = screen.getByText(`${strDrink}`);
+        expect(drinkName).toBeInTheDocument();
       });
     });
   });
@@ -131,17 +131,17 @@ describe('30 - Testing the category filter', () => {
 describe('31 - Testing the category filter', () => {
   it('Testing the All filter', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/foods');
+    history.push('/drinks');
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(beefMeals),
+      json: jest.fn().mockResolvedValue(ordinaryDrinks),
     });
     const allCategory = screen.getByTestId('All-category-filter');
     userEvent.click(allCategory);
     waitForElement(() => {
-      meals.meals.forEach(({ strMeal }) => {
-        const meal = screen.getByText(`${strMeal}`);
-        expect(meal).toBeInTheDocument();
+      drinks.drinks.forEach(({ strDrink }) => {
+        const drink = screen.getByText(`${strDrink}`);
+        expect(drink).toBeInTheDocument();
       });
     });
   });
@@ -150,10 +150,10 @@ describe('31 - Testing the category filter', () => {
 describe('32 - Testing the redirection', () => {
   it('Redirects to the details screen by clicking the card', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/foods');
+    history.push('/drinks');
     const recipeCard = await screen.findByTestId('0-recipe-card');
     userEvent.click(recipeCard);
     const { pathname } = history.location;
-    expect(pathname).toBe('/foods/52977');
+    expect(pathname).toBe('/drinks/15997');
   });
 });
