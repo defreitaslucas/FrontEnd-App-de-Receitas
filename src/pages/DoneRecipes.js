@@ -6,6 +6,8 @@ import shareIcon from '../images/shareIcon.svg';
 import { getDoneRecipes } from '../helpers/localStorage';
 import './DoneRecipes.css';
 
+const copy = require('clipboard-copy');
+
 function DoneRecipes() {
   const { renderedDoneRecipesList, setDoneRecipes } = useContext(MyContext);
 
@@ -19,13 +21,13 @@ function DoneRecipes() {
   }, [setDoneRecipes]);
 
   const handleShareButtonClick = ({ currentTarget }, url) => {
-    navigator.clipboard.writeText(url);
+    copy(url);
     currentTarget.classList.toggle('popUp-container');
   };
 
   const addFilter = (type) => {
     setDoneRecipes((prevState) => {
-      let newDoneRecipesList = [...prevState.renderedDoneRecipesList];
+      let newDoneRecipesList = [...prevState.doneRecipes];
       if (type === 'drink') {
         newDoneRecipesList = newDoneRecipesList.filter((el) => el.type === 'drink');
         return ({

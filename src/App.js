@@ -30,16 +30,6 @@ function App() {
         <Route exact path="/profile" component={ ProfileScreen } />
         <Route
           exact
-          path="/foods/:recipeId/in-progress"
-          component={ RecipesInProgress }
-        />
-        <Route
-          exact
-          path="/drinks/:recipeId/in-progress"
-          component={ RecipesInProgress }
-        />
-        <Route
-          exact
           path="/explore/foods/ingredients"
           component={ ExploreIngredientsScreen }
         />
