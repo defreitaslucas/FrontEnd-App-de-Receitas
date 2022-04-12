@@ -11,7 +11,8 @@
 }
 
 .detail-screen-container--title {
-  background-color: #3a3939;
+  background-color: #aeadad;
+  color: black;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -29,7 +30,7 @@
 }
 
 .detail-screen-container--like button, .start-recipe-btn {
-  background-color: #999b848e;
+  background-color: #d7a631;
   border: none;
   border-radius: 5px;
   padding: 1px;
@@ -84,4 +85,16 @@
   font-size: medium;
   font-weight: 600;
   margin-left: 10px;
+}
+
+.details-screen--overflow-container {
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 0 30px;
+  border: 2px solid gray;
+  text-align: justify;
+}
+
+.details-screen--overflow-container li {
+  font-size: 1em;
 }

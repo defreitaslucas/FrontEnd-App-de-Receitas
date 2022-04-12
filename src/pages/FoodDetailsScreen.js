@@ -121,8 +121,8 @@ export default function FoodDetailsScreen(props) {
         </div>
 
         <div>
-          <ol>
-            INGREDIENTES:
+          INGREDIENTS:
+          <ol className="details-screen--overflow-container">
             { ingredientList.map((ingredient, index) => (
               <li
                 className="ingredients-container"
@@ -133,9 +133,15 @@ export default function FoodDetailsScreen(props) {
               </li>
             )) }
           </ol>
-          <p data-testid="instructions" className="instruction-paragraph">
-            { foodDetails.strInstructions }
-          </p>
+          <div>
+            INSTRUCTIONS:
+            <p
+              data-testid="instructions"
+              className="instruction-paragraph details-screen--overflow-container"
+            >
+              { foodDetails.strInstructions }
+            </p>
+          </div>
         </div>
 
         <div>

@@ -42,6 +42,18 @@ h3 {
 .input-ul {
   align-items: center;
   display: flex;
-  justify-content: space-between;
-  width: 180px;
+/*   justify-content: space-between; */
+  width: 185px;
+}
+
+.input-ul * {
+  margin-right: 5px;
+}
+
+label * {
+  display: inline;
+}
+
+.clicked {
+  text-decoration: line-through;
 }

@@ -1,6 +1,6 @@
 .search-bar {
   margin-top: 8px;
-  padding-right: 20px;
+/*   padding-right: 20px; */
 }
 
 .search-bar--line-button {
@@ -9,7 +9,7 @@
 }
 
 .search-bar--line-button button {
-  background-color: #999b84;
+  background-color: #d7a631;
   border: none;
   border-radius: 5px;
   box-sizing: border-box;
@@ -21,4 +21,8 @@
   align-items: center;
   display: flex;
   justify-content: space-around;
+}
+
+.search-bar--input-text {
+  padding-left: 8px; 
 }

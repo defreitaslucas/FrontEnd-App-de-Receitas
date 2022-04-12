@@ -51,6 +51,7 @@ function SearchBar({ page }) {
         <div>
           Ingredients
           <input
+            style={ { marginLeft: '4px' } }
             data-testid="ingredient-search-radio"
             id="Ingredient"
             name="radioSearch"
@@ -62,6 +63,7 @@ function SearchBar({ page }) {
         <div>
           Name
           <input
+            style={ { marginLeft: '4px' } }
             data-testid="name-search-radio"
             id="Name"
             name="radioSearch"
@@ -73,6 +75,7 @@ function SearchBar({ page }) {
         <div>
           First Letter
           <input
+            style={ { marginLeft: '4px' } }
             data-testid="first-letter-search-radio"
             id="First Letter"
             name="radioSearch"
