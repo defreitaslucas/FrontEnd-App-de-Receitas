@@ -158,6 +158,12 @@ function DoneRecipes() {
                     onClick={ (recipe.type === 'food')
                       ? (event) => handleShareButtonClick(event, `http://localhost:3000/foods/${recipe.id}`)
                       : (event) => handleShareButtonClick(event, `http://localhost:3000/drinks/${recipe.id}`) }
+                    style={ {
+                      backgroundColor: 'grey',
+                      borderRadius: '15px',
+                      width: '52px',
+                      padding: '5px',
+                      boxShadow: '5px 5px 8px 5px black' } }
                   />
                   <span>Link copied!</span>
                 </div>
