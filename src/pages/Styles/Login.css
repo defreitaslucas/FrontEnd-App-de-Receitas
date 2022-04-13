@@ -36,10 +36,10 @@
 
 .login-page--form button {
   background-color: #d7a631;
-  color: black;
   border: none;
   border-radius: 5px;
   box-sizing: border-box;
+  color: black;
   line-height: 30px;
   width: 240px;
 }

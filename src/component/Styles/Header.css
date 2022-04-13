@@ -2,16 +2,16 @@ html {
   width: 360px;
 }
 
-.header-container {  
+.header-container {
   background-color: #aeadad;
   padding: 8px;
   text-align: center;
 }
 
 .header-container--section-icons {
+  align-items: center;
   display: flex;
   justify-content: space-around;
-  align-items: center;
   width: 360px;
 }
 
@@ -20,17 +20,9 @@ html {
   border-radius: 5px;
   box-sizing: border-box;
   line-height: 30px;
-/*   padding-left: 8px; */
 }
 
 .header-container--button-magnifier {
-/*   position: absolute;
-  right: 5px; */
   background-color: rgba(255, 255, 255, 0);
   border: none;
-}
-
-.header-container--profile-icon {
- /*  position: absolute;
-  left: 5px; */
 }

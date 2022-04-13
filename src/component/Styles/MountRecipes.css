@@ -35,19 +35,18 @@ h3 {
   font-size: 20px;
 }
 
-.input-ul {
-  align-items: center;
-  display: flex;
-/*   justify-content: space-between; */
-  width: 200px;
+label * {
+  display: inline;
 }
 
 .input-ul * {
   margin-right: 5px;
 }
 
-label * {
-  display: inline;
+.input-ul {
+  align-items: center;
+  display: flex;
+  width: 200px;
 }
 
 .clicked {
@@ -64,12 +63,12 @@ label * {
 }
 
 .mount-recipes-overflow-container {
+  border: 2px solid gray;
+  margin: 10px;
   max-height: 250px;
   overflow-y: auto;
   padding: 0 30px;
-  border: 2px solid gray;
   text-align: justify;
-  margin: 10px;
 }
 
 .mount-recipes-ingredients {
@@ -78,6 +77,6 @@ label * {
 }
 
 .ingredients-title {
-  margin-top: 10px;
   font-size: medium;
+  margin-top: 10px;
 }

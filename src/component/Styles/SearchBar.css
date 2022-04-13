@@ -1,6 +1,5 @@
 .search-bar {
   margin-top: 8px;
-/*   padding-right: 20px; */
 }
 
 .search-bar--line-button {
@@ -24,5 +23,5 @@
 }
 
 .search-bar--input-text {
-  padding-left: 8px; 
+  padding-left: 8px;
 }

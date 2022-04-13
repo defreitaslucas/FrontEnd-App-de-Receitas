@@ -12,8 +12,8 @@
 
 .detail-screen-container--title {
   background-color: #aeadad;
-  color: black;
   border-radius: 15px;
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -88,12 +88,12 @@
 }
 
 .details-screen--overflow-container {
+  border: 2px solid gray;
+  margin: 10px;
   max-height: 250px;
   overflow-y: auto;
   padding: 0 30px;
-  border: 2px solid gray;
   text-align: justify;
-  margin: 10px;
 }
 
 .details-screen--overflow-container li {
