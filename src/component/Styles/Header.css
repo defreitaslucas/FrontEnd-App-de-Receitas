@@ -8,6 +8,11 @@ html {
   text-align: center;
 }
 
+.header-container h4 {
+  font-size: 2em;
+  font-weight: 900;
+}
+
 .header-container--section-icons {
   align-items: center;
   display: flex;
