@@ -83,6 +83,8 @@ export default function FoodDetailsScreen(props) {
     saveFavoriteRecipe({ ...newObj });
   };
 
+  const video = foodDetails ? foodDetails.strYoutube.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/') : undefined;
+
   return (
     <main className="detail-screen-container">
       <div className="detail-screen-container--title">
@@ -155,12 +157,32 @@ export default function FoodDetailsScreen(props) {
         </div>
 
         <div>
-          <object
-            data={ foodDetails.strVideo }
-            data-testid="video"
-          >
-            { `${foodDetails.strGlass} prep video isn't disponible` }
-          </object>
+          <details>
+            <summary
+              style={ {
+                color: 'gold',
+                fontWeight: 'bold',
+                fontFamily: 'cursive',
+                fontSize: '1.2em' } }
+            >
+              show recipe video
+            </summary>
+            <iframe
+              width="320"
+              height="180"
+              src={ video }
+              title="Recipe YouTube video player"
+              frameBorder="0"
+              allow="accelerometer
+                autoplay
+                clipboard-write
+                encrypted-media
+                gyroscope
+                picture-in-picture"
+              allowFullScreen
+              data-testid="video"
+            />
+          </details>
         </div>
         {recipeProgress === 'done'
           ? 'Nice Job!!'
