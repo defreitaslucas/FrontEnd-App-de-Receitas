@@ -20,6 +20,11 @@ html {
   width: 360px;
 }
 
+.header-container--section-icons img:hover {
+  background-color: silver;
+  transform: scale(1.1);
+}
+
 .header-container input {
   border: none;
   border-radius: 5px;
@@ -30,4 +35,8 @@ html {
 .header-container--button-magnifier {
   background-color: rgba(255, 255, 255, 0);
   border: none;
+}
+
+.header-container--button-magnifier:hover {
+  background-color: rgba(255, 255, 255, 0);
 }
