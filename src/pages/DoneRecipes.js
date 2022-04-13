@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import shareIcon from '../images/shareIcon.svg';
+import homeIcon from '../images/homeIcon.svg';
+import profileIcon from '../images/profileIcon.svg';
 import { getDoneRecipes } from '../helpers/localStorage';
 import './Styles/DoneRecipes.css';
 
@@ -65,6 +67,25 @@ function DoneRecipes() {
         <h2 className="done-recipes-header">
           Done Recipes
         </h2>
+      </div>
+      <div style={ { backgroundColor: 'black', textAlign: 'center' } }>
+        <Link to="/foods">
+          <button type="button" style={ { backgroundColor: '#d7a631' } }>
+            <img src={ homeIcon } alt="click to go home" />
+          </button>
+        </Link>
+        <Link to="/profile">
+          <button
+            type="button"
+            style={ { backgroundColor: '#d7a631', width: '40px', height: '24px' } }
+          >
+            <img
+              src={ profileIcon }
+              alt="click to go to your profile"
+              style={ { width: '18px' } }
+            />
+          </button>
+        </Link>
       </div>
       <main className="done-recipes-container">
         <button

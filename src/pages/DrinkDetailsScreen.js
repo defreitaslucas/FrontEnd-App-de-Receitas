@@ -8,6 +8,7 @@ import { checkRecipeFavoritness, checkRecipeProgress,
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import homeIcon from '../images/homeIcon.svg';
 import './Styles/DetailScreen.css';
 
 const MAGIC_NUMBER_SIX = 6;
@@ -95,6 +96,12 @@ export default function DrinkDetailsScreen(props) {
           <span className="popUp">Link copied!</span>
           <img src={ shareIcon } alt="share button" />
         </button>
+
+        <Link to="/drinks">
+          <button type="button">
+            <img src={ homeIcon } alt="click to go home" />
+          </button>
+        </Link>
 
         <button
           type="button"

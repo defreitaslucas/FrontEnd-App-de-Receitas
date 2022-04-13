@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import homeIcon from '../images/homeIcon.svg';
 import {
   getRecipeIngredients, saveFavoriteRecipe, getFavoriteRecipes,
   removeFavoriteRecipeById, removeFavoriteRecipeByType, saveDoneRecipe,
@@ -185,6 +186,11 @@ export default function MountRecipes(props) {
                   className={ isFavorite ? 'favorited' : 'no-favorited' }
                 />
               </button>
+              <Link to={ `/${isFood ? 'foods' : 'drinks'}/` }>
+                <button type="button" style={ { backgroundColor: '#d7a631' } }>
+                  <img src={ homeIcon } alt="click to go home" />
+                </button>
+              </Link>
             </div>
             <h3 className="ingredients-title">INGREDIENTS:</h3>
             <ol className="mount-recipes-ingredients mount-recipes-overflow-container">
