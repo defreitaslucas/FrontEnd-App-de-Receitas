@@ -8,7 +8,6 @@ import Header from '../component/Header';
 export default function ExploreRecipesScreen({ location, history }) {
   const isFood = location.pathname.includes('foods');
   const isFoodStr = isFood ? 'foods' : 'drinks';
-  const isFoodTitle = isFood ? 'Foods' : 'Drinks';
 
   const handleSurpriseBtnClick = async () => {
     if (isFood) {
@@ -22,7 +21,10 @@ export default function ExploreRecipesScreen({ location, history }) {
 
   return (
     <main>
-      <Header title={ `Explore ${isFoodTitle}` } />
+      {
+        location.pathname.includes('foods')
+          ? <Header title="Explore Foods" /> : <Header title="Explore Drinks" />
+      }
       <header>
         <nav>
           <button

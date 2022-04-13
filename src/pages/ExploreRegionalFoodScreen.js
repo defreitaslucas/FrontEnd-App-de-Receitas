@@ -48,7 +48,7 @@ export default function ExploreRegionalFoodScreen() {
 
   return (
     <main>
-      <Header title="Foods" />
+      <Header title="Explore Nationalities" />
       <h1>
         FOODS BY REGION
       </h1>

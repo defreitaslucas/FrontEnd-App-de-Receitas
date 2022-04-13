@@ -14,7 +14,7 @@ function SearchBar({ page }) {
 
   function handleClick() {
     if (radioSearch === 'First Letter' && searchBarValue.length > 1) {
-      window.alert('Your search must have only 1 (one) character');
+      global.alert('Your search must have only 1 (one) character');
     }
     if (page === 'Foods') {
       setFoods((prevState) => ({

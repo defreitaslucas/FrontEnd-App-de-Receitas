@@ -34,7 +34,7 @@ function Drinks() {
   return (
     <>
       <Header title="Drinks" />
-      <div className="drinks-container">
+      <main className="drinks-container">
         {
           (drinksCategories.length > 0)
             ? (
@@ -83,13 +83,14 @@ function Drinks() {
             : null
         }
         <button
+          name="All"
           type="button"
           onClick={ removeFilter }
           data-testid="All-category-filter"
         >
-          Remover Filtro
+          All
         </button>
-      </div>
+      </main>
       <FooterMenu />
     </>
   );

@@ -9,6 +9,8 @@ import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 import './Styles/DetailScreen.css';
 
+const copy = require('clipboard-copy');
+
 const MAGIC_NUMBER_SIX = 6;
 
 export default function FoodDetailsScreen(props) {
@@ -23,14 +25,21 @@ export default function FoodDetailsScreen(props) {
 
   const getInitialData = useCallback(async () => {
     const foodData = await fetchMealById(id);
+    // const ingredientsArr = Object.entries(foodData).filter(([key, value]) => (key
+    //   .includes('strIngredient') && value));
+    // const measuresArr = Object.entries(foodData).filter(([key, value]) => (key
+    //   .includes('strMeasure') && value));
+    // const ingredients = ingredientsArr.reduce((acc, data, index) => {
+    //   acc = [...acc, `${data[1]} ${measuresArr[index][1]}`];
+    //   return acc;
+    // }, []);
     const ingredientsArr = Object.entries(foodData).filter(([key, value]) => (key
       .includes('strIngredient') && value));
-    const measuresArr = Object.entries(foodData).filter(([key, value]) => (key
-      .includes('strMeasure') && value));
     const ingredients = ingredientsArr.reduce((acc, data, index) => {
-      acc = [...acc, `${data[1]} ${measuresArr[index][1]}`];
+      acc = [...acc, `${data[1]} ${foodData['strMeasure'.concat([index + 1])]}`];
       return acc;
     }, []);
+    setIngredientList(ingredients);
     setIngredientList(ingredients);
     setFoodDetails(foodData);
     setId(recipeId);
@@ -53,7 +62,8 @@ export default function FoodDetailsScreen(props) {
 
   const handleShareButtonClick = ({ currentTarget }) => {
     const { location: { pathname } } = props;
-    navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
+    // navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
+    copy(`http://localhost:3000${pathname}`);
     currentTarget.classList.toggle('popUp-container');
   };
 

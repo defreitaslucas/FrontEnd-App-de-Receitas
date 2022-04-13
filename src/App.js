@@ -26,9 +26,17 @@ function App() {
         <Route exact path="/foods/:recipeId" component={ FoodDetailsScreen } />
         <Route exact path="/done-recipes" component={ DoneRecipes } />
         <Route exact path="/favorite-recipes" component={ FavoriteRecipesScreen } />
-        <Route exact path="/drinks" component={ Drinks } />
-        <Route exact path="/foods" component={ Foods } />
         <Route exact path="/profile" component={ ProfileScreen } />
+        <Route
+          exact
+          path="/explore/foods/ingredients"
+          component={ ExploreIngredientsScreen }
+        />
+        <Route
+          exact
+          path="/explore/drinks/ingredients"
+          component={ ExploreIngredientsScreen }
+        />
         <Route
           exact
           path="/foods/:recipeId/in-progress"
@@ -41,13 +49,13 @@ function App() {
         />
         <Route
           exact
-          path="/explore/foods/ingredients"
-          component={ ExploreIngredientsScreen }
+          path="/drinks"
+          component={ Drinks }
         />
         <Route
           exact
-          path="/explore/drinks/ingredients"
-          component={ ExploreIngredientsScreen }
+          path="/foods"
+          component={ Foods }
         />
         <Route
           exact

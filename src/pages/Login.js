@@ -60,7 +60,7 @@ function Login({ history }) {
           />
         </label>
         <label htmlFor="password-input">
-          <p>Senha</p>
+          <p>Password</p>
           <input
             type="password"
             data-testid="password-input"
@@ -76,7 +76,7 @@ function Login({ history }) {
           disabled={ buttonDisable }
           onClick={ handleClick }
         >
-          Entrar
+          Sign In
 
         </button>
       </div>

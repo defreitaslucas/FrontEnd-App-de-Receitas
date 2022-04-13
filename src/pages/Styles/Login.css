@@ -35,7 +35,8 @@
 }
 
 .login-page--form button {
-  background-color: #999b848e;
+  background-color: #d7a631;
+  color: black;
   border: none;
   border-radius: 5px;
   box-sizing: border-box;

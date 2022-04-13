@@ -2,13 +2,15 @@ import React, { useState, useCallback, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { fetchCocktailDetails } from '../services/fetchCocktail';
 import { fetchMealsDetails } from '../services/fetchMealsDetails';
-import isFoodCheckStr from '../helpers';
+import { isFoodCheckStr } from '../helpers';
 import MyContext from '../context/MyContext';
+import FooterMenu from '../component/FooterMenu';
+import Header from '../component/Header';
 
 export default function ExploreIngredientsScreen({ location, history }) {
   const MAGIC_NUMBER_TWELVE = 12;
   const isFood = location.pathname.includes('foods');
-  const isFoodStr = isFoodCheckStr();
+  const isFoodStr = isFoodCheckStr(isFood);
 
   const { setFoods, setDrinks } = useContext(MyContext);
 
@@ -42,7 +44,9 @@ export default function ExploreIngredientsScreen({ location, history }) {
 
   return (
     <main>
+      <Header title="Explore Ingredients" />
       <header>
+        {console.log(location.pathname.includes('foods'))}
         <h1>
           { isFoodStr.toUpperCase() }
           {' '}
@@ -68,7 +72,10 @@ export default function ExploreIngredientsScreen({ location, history }) {
                   <img
                     data-testid={ `${index}-card-img` }
                     src={ img }
-                    alt={ `${strIngredient}; click to see recipes with this ingredient` }
+                    alt={
+                      `${strIngredient || strIngredient1}
+                      ; click to see recipes with this ingredient`
+                    }
                   />
                   <h4 data-testid={ `${index}-card-name` }>
                     {strIngredient || strIngredient1}
@@ -82,6 +89,7 @@ export default function ExploreIngredientsScreen({ location, history }) {
             return null;
           })}
       </section>
+      <FooterMenu />
     </main>
   );
 }

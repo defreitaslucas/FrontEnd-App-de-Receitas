@@ -1,4 +1,4 @@
-.drinks-container {
+.done-recipes-container {
   background-color: #222121;
   color: white;
   display: flex;
@@ -8,14 +8,13 @@
   padding-bottom: 80px;
 }
 
-.drinks-container img {
+.done-recipes-container img {
   border-radius: 100%;
-  width: 100px;
+  width: 200px;
 }
 
-.drinks-container p {
+.done-recipes-container p {
   color: #efd9d1;
-  max-width: 10ch;
   overflow: hidden;
   padding-left: 6px;
   text-decoration: none;
@@ -23,27 +22,17 @@
   white-space: nowrap;
 }
 
-.drinks-container--card {
+.done-recipes-container--card {
   align-items: center;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  height: 140px;
   margin: 20px;
-  width: 106px;
+  border: 1px solid white;
+  padding: 20px;
 }
 
-.drinks-container--detail-view {
-  display: none;
-}
-
-.drinks-container--category {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.drinks-container button {
+.done-recipes-filter {
   background-color: #d7a631;
   border: none;
   border-radius: 5px;
@@ -52,4 +41,12 @@
   line-height: 20px;
   margin: 4px 8px;
   width: 100px;
+}
+
+.done-recipes-header {
+  background-color: #222121;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  margin: 0;
 }

@@ -93,6 +93,7 @@
   padding: 0 30px;
   border: 2px solid gray;
   text-align: justify;
+  margin: 10px;
 }
 
 .details-screen--overflow-container li {

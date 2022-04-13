@@ -1,5 +1,9 @@
-export const getDoneRecipes = () => JSON.parse(localStorage.getItem('doneRecipes'))
-  || [];
+export const getDoneRecipes = () => JSON.parse(localStorage.getItem('doneRecipes')
+  || JSON.stringify([]));
+
+// !!!!!!!!!!!!!!!! Consertar os demais getItem. A condicional deve ser dentro do JSON.parse ou ele quebra (ao menos no teste)!!!!!!!
+// export const getDoneRecipes = () => JSON.parse(localStorage.getItem('doneRecipes'))
+//   || [];
 
 export const getInProgressRecipes = () => JSON.parse(localStorage
   .getItem('inProgressRecipes')) || { cocktails: '', meals: '' };
@@ -30,7 +34,7 @@ export const saveFavoriteRecipe = (recipeData) => {
 export const removeFavoriteRecipeById = (recipeId) => {
   const currentFavorites = getFavoriteRecipes();
   const filteredFavorites = currentFavorites.filter(({ id }) => id !== recipeId);
-  const newFavorites = [...filteredFavorites];
+  const newFavorites = [...filteredFavorites]; // !!!! linha desnecessária, eu acho
   localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
 };
 

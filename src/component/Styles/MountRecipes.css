@@ -15,10 +15,6 @@
   display: none;
 }
 
-.mount-recipes-ingredients {
-  font-size: 14px;
-}
-
 button {
   background-color: #999b848e;
   border: none;
@@ -43,7 +39,7 @@ h3 {
   align-items: center;
   display: flex;
 /*   justify-content: space-between; */
-  width: 185px;
+  width: 200px;
 }
 
 .input-ul * {
@@ -56,4 +52,32 @@ label * {
 
 .clicked {
   text-decoration: line-through;
+}
+
+.mount-recipe-btn {
+  background-color: #d7a631;
+}
+
+.recipes-in-progress-img {
+  border-radius: 100%;
+  width: 200px;
+}
+
+.mount-recipes-overflow-container {
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 0 30px;
+  border: 2px solid gray;
+  text-align: justify;
+  margin: 10px;
+}
+
+.mount-recipes-ingredients {
+  font-size: 14px;
+  text-align: center;
+}
+
+.ingredients-title {
+  margin-top: 10px;
+  font-size: medium;
 }
