@@ -12,6 +12,7 @@
 .login-page--form {
   background-color: #3a39393d;
   border-radius: 15px;
+  box-shadow: 5px 5px 10px 10px black;
   display: flex;
   flex-direction: column;
   height: 360px;
@@ -40,6 +41,11 @@
   border-radius: 5px;
   box-sizing: border-box;
   color: black;
+  font-weight: 800;
   line-height: 30px;
   width: 240px;
+}
+
+.login-page--form button:disabled {
+  background-color: #c0a972;
 }

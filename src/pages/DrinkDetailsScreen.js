@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { fetchCocktailById } from '../services/fetchCocktail';
 import { fetchRecomendedMeals } from '../services/fetchMealsDetails';
 import { checkRecipeFavoritness, checkRecipeProgress,
@@ -7,6 +8,7 @@ import { checkRecipeFavoritness, checkRecipeProgress,
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import homeIcon from '../images/homeIcon.svg';
 import './Styles/DetailScreen.css';
 
 const MAGIC_NUMBER_SIX = 6;
@@ -95,6 +97,12 @@ export default function DrinkDetailsScreen(props) {
           <img src={ shareIcon } alt="share button" />
         </button>
 
+        <Link to="/drinks">
+          <button type="button">
+            <img src={ homeIcon } alt="click to go home" />
+          </button>
+        </Link>
+
         <button
           type="button"
           data-testid="favorite-btn"
@@ -120,10 +128,11 @@ export default function DrinkDetailsScreen(props) {
         </div>
 
         <div>
-          <ol>
-            <h4>INGREDIENTS:</h4>
+          <h5 style={ { fontWeight: '800' } }>INGREDIENTS:</h5>
+          <ol className="details-screen--overflow-container">
             { ingredientList.map((ingredient, index) => (
               <li
+                className="ingredients-container"
                 key={ ingredient }
                 data-testid={ `${index}-ingredient-name-and-measure` }
               >
@@ -131,9 +140,15 @@ export default function DrinkDetailsScreen(props) {
               </li>
             )) }
           </ol>
-          <p data-testid="instructions">
-            { drinkDetails.strInstructions }
-          </p>
+          <div>
+            <h5 style={ { fontWeight: '800' } }>INSTRUCTIONS:</h5>
+            <p
+              data-testid="instructions"
+              className="instruction-paragraph details-screen--overflow-container"
+            >
+              { drinkDetails.strInstructions }
+            </p>
+          </div>
         </div>
         {recipeProgress === 'done'
           ? 'Nice Job!!'
@@ -157,19 +172,24 @@ export default function DrinkDetailsScreen(props) {
         >
           {recomendations.map(({ idMeal, strMealThumb, strMeal }, index) => (
             index < MAGIC_NUMBER_SIX && (
-              <div
-                className="recomended-iten"
-                key={ idMeal }
-                data-testid={ `${index}-recomendation-card` }
-              >
-                <img
-                  src={ `${strMealThumb}/preview` }
-                  alt={ `${strMeal} recomendation` }
-                />
-                <span data-testid={ `${index}-recomendation-title` }>
-                  { strMeal }
-                </span>
-              </div>
+              <Link to={ `/foods/${idMeal}` }>
+                <div
+                  className="recomended-iten"
+                  key={ idMeal }
+                  data-testid={ `${index}-recomendation-card` }
+                >
+                  <img
+                    src={ `${strMealThumb}/preview` }
+                    alt={ `${strMeal} recomendation` }
+                  />
+                  <span
+                    data-testid={ `${index}-recomendation-title` }
+                    style={ { color: 'white' } }
+                  >
+                    { strMeal }
+                  </span>
+                </div>
+              </Link>
             )
           ))}
         </div>

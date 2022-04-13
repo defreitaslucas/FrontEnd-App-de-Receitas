@@ -55,6 +55,16 @@ label * {
 
 .mount-recipe-btn {
   background-color: #d7a631;
+  font-weight: 600;
+}
+
+button:disabled {
+  background-color: #c0a972;
+}
+
+button:hover {
+  background-color: gold;
+  transform: scale(1.1);
 }
 
 .recipes-in-progress-img {
@@ -72,7 +82,7 @@ label * {
 }
 
 .mount-recipes-ingredients {
-  font-size: 14px;
+  font-size: 1em;
   text-align: center;
 }
 

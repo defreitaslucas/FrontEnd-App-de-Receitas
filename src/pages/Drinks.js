@@ -87,6 +87,7 @@ function Drinks() {
           type="button"
           onClick={ removeFilter }
           data-testid="All-category-filter"
+          style={ { fontWeight: '900' } }
         >
           All
         </button>

@@ -10,6 +10,7 @@
 
 .done-recipes-container img {
   border-radius: 100%;
+  box-shadow: 5px 5px 8px 5px black;
   width: 200px;
 }
 
@@ -26,6 +27,7 @@
   align-items: center;
   border: 1px solid white;
   border-radius: 5px;
+  box-shadow: 8px 8px 5px 15px black;
   display: flex;
   flex-direction: column;
   margin: 20px;
@@ -36,6 +38,7 @@
   background-color: #d7a631;
   border: none;
   border-radius: 5px;
+  box-shadow: 5px 5px 8px 5px black;
   box-sizing: border-box;
   font-size: 14px;
   line-height: 20px;

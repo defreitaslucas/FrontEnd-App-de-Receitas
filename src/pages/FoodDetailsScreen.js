@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { fetchRecomendedDrinks } from '../services/fetchCocktail';
 import { fetchMealById } from '../services/fetchMealsDetails';
 import { checkRecipeFavoritness, checkRecipeProgress,
@@ -7,6 +8,7 @@ import { checkRecipeFavoritness, checkRecipeProgress,
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import homeIcon from '../images/homeIcon.svg';
 import './Styles/DetailScreen.css';
 
 const copy = require('clipboard-copy');
@@ -83,7 +85,7 @@ export default function FoodDetailsScreen(props) {
     saveFavoriteRecipe({ ...newObj });
   };
 
-  const video = foodDetails ? foodDetails.strYoutube.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/') : undefined;
+  const video = foodDetails.strYoutube ? foodDetails.strYoutube.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/') : undefined;
 
   return (
     <main className="detail-screen-container">
@@ -106,6 +108,12 @@ export default function FoodDetailsScreen(props) {
           <span className="popUp">Link copied!</span>
           <img src={ shareIcon } alt="share button" />
         </button>
+
+        <Link to="/foods/">
+          <button type="button">
+            <img src={ homeIcon } alt="click to go home" />
+          </button>
+        </Link>
 
         <button
           type="button"
@@ -133,7 +141,7 @@ export default function FoodDetailsScreen(props) {
         </div>
 
         <div>
-          INGREDIENTS:
+          <h5 style={ { fontWeight: '800' } }>INGREDIENTS:</h5>
           <ol className="details-screen--overflow-container">
             { ingredientList.map((ingredient, index) => (
               <li
@@ -146,7 +154,7 @@ export default function FoodDetailsScreen(props) {
             )) }
           </ol>
           <div>
-            INSTRUCTIONS:
+            <h5 style={ { fontWeight: '800' } }>INSTRUCTIONS:</h5>
             <p
               data-testid="instructions"
               className="instruction-paragraph details-screen--overflow-container"
@@ -208,19 +216,24 @@ export default function FoodDetailsScreen(props) {
           {recomendation.map(({ idDrink, strDrinkThumb, strDrink }, index) => {
             if (index < MAGIC_NUMBER_SIX) {
               return (
-                <div
-                  key={ idDrink }
-                  className="recomended-iten"
-                  data-testid={ `${index}-recomendation-card` }
-                >
-                  <img
-                    src={ `${strDrinkThumb}/preview` }
-                    alt={ `${strDrink} recomendation` }
-                  />
-                  <span data-testid={ `${index}-recomendation-title` }>
-                    { strDrink }
-                  </span>
-                </div>
+                <Link to={ `/drinks/${idDrink}` }>
+                  <div
+                    key={ idDrink }
+                    className="recomended-iten"
+                    data-testid={ `${index}-recomendation-card` }
+                  >
+                    <img
+                      src={ `${strDrinkThumb}/preview` }
+                      alt={ `${strDrink} recomendation` }
+                    />
+                    <span
+                      data-testid={ `${index}-recomendation-title` }
+                      style={ { color: 'white' } }
+                    >
+                      { strDrink }
+                    </span>
+                  </div>
+                </Link>
               );
             } return null;
           })}
