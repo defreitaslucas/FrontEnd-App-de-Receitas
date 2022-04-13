@@ -10,7 +10,7 @@
 
 .foods-container img {
   border-radius: 100%;
-  box-shadow: 8px 8px 8px 8px black;
+  box-shadow: 2px 2px 8px 2px grey , 8px 8px 8px 8px black;
   width: 100px;
 }
 

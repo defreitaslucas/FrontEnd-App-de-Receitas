@@ -6,6 +6,10 @@
   padding: 4px;
 }
 
+.detail-screen-container button {
+  font-weight: 600;
+}
+
 .popUp {
   display: none;
 }
@@ -22,7 +26,8 @@
 }
 
 .detail-screen-container--title h1 {
-  font-size: 22px;
+  font-size: 28px;
+  font-weight: 800;
 }
 
 .detail-screen-container--title h3 {
