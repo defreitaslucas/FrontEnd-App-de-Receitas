@@ -7,7 +7,7 @@ import { checkRecipeFavoritness, checkRecipeProgress,
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
-import './DetailsScreen.css';
+import './Styles/DetailScreen.css';
 
 const copy = require('clipboard-copy');
 
@@ -84,15 +84,17 @@ export default function FoodDetailsScreen(props) {
   };
 
   return (
-    <main>
-      <h1 data-testid="recipe-title">
-        { foodDetails.strMeal }
-      </h1>
-      <h3 data-testid="recipe-category">
-        { foodDetails.strCategory }
-      </h3>
+    <main className="detail-screen-container">
+      <div className="detail-screen-container--title">
+        <h1 data-testid="recipe-title">
+          { foodDetails.strMeal }
+        </h1>
+        <h3 data-testid="recipe-category">
+          { foodDetails.strCategory }
+        </h3>
+      </div>
 
-      <nav>
+      <nav className="detail-screen-container--like">
         <button
           type="button"
           data-testid="share-btn"
@@ -111,52 +113,73 @@ export default function FoodDetailsScreen(props) {
           className={ isFavorite ? 'favorite-btn' : '' }
         >
           <img
-            src={ whiteHeart }
-            alt="a empty heart. click to favorite this recipe"
-            className="no-favorited"
-          />
-          <img
-            src={ blackHeart }
-            alt="a filld heart. click to unfavorite this recipe"
-            className="favorited"
+            src={ isFavorite ? blackHeart : whiteHeart }
+            alt="a filld heart. click to unfavorite and favorite this recipe"
+            className={ isFavorite ? 'favorited' : 'no-favorited' }
           />
         </button>
       </nav>
 
-      <div>
-        <img
-          src={ `${foodDetails.strMealThumb}/preview` }
-          alt={ `${foodDetails.strMeal} preview` }
-          data-testid="recipe-photo"
-        />
+      <div className="detail-screen--recipe">
+
+        <div>
+          <img
+            src={ `${foodDetails.strMealThumb}/preview` }
+            alt={ `${foodDetails.strMeal} preview` }
+            data-testid="recipe-photo"
+          />
+        </div>
+
+        <div>
+          INGREDIENTS:
+          <ol className="details-screen--overflow-container">
+            { ingredientList.map((ingredient, index) => (
+              <li
+                className="ingredients-container"
+                key={ ingredient }
+                data-testid={ `${index}-ingredient-name-and-measure` }
+              >
+                {ingredient}
+              </li>
+            )) }
+          </ol>
+          <div>
+            INSTRUCTIONS:
+            <p
+              data-testid="instructions"
+              className="instruction-paragraph details-screen--overflow-container"
+            >
+              { foodDetails.strInstructions }
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <object
+            data={ foodDetails.strVideo }
+            data-testid="video"
+          >
+            { `${foodDetails.strGlass} prep video isn't disponible` }
+          </object>
+        </div>
+        {recipeProgress === 'done'
+          ? 'Nice Job!!'
+          : (
+            <button
+              className="start-recipe-btn"
+              type="button"
+              data-testid="start-recipe-btn"
+              name="Start Recipe"
+              onClick={ handleStartButtonClick }
+            >
+              { recipeProgress === 'new' ? 'Start Recipe' : 'Continue Recipe' }
+            </button>)}
       </div>
 
-      <div>
-        <ol className="ingredients-container">
-          INGREDIENTES:
-          { ingredientList.map((ingredient, index) => (
-            <li key={ ingredient } data-testid={ `${index}-ingredient-name-and-measure` }>
-              {ingredient}
-            </li>
-          )) }
-        </ol>
-        <p data-testid="instructions" className="instruction-paragraph">
-          { foodDetails.strInstructions }
-        </p>
-      </div>
-
-      <div>
-        <object
-          data={ foodDetails.strVideo }
-          data-testid="video"
-          title="videos"
-        >
-          { `${foodDetails.strGlass} prep video isn't disponible` }
-        </object>
-      </div>
-
-      <div>
-        Recomended recipes:
+      <div className="detail-screen--recomended-recipes">
+        <h5>
+          Recommended recipes:
+        </h5>
         <div
           className="recomendations-container"
         >
@@ -182,18 +205,6 @@ export default function FoodDetailsScreen(props) {
         </div>
       </div>
 
-      {recipeProgress === 'done'
-        ? 'Nice Job!!'
-        : (
-          <button
-            className="start-recipe-btn"
-            type="button"
-            data-testid="start-recipe-btn"
-            name="Start Recipe"
-            onClick={ handleStartButtonClick }
-          >
-            { recipeProgress === 'new' ? 'Start Recipe' : 'Continue Recipe' }
-          </button>)}
     </main>
   );
 }

@@ -1,0 +1,28 @@
+html {
+  width: 360px;
+}
+
+.header-container {
+  background-color: #aeadad;
+  padding: 8px;
+  text-align: center;
+}
+
+.header-container--section-icons {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  width: 360px;
+}
+
+.header-container input {
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  line-height: 30px;
+}
+
+.header-container--button-magnifier {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+}

@@ -1,0 +1,101 @@
+.detail-screen-container {
+  background-color: #222121;
+  color: antiquewhite;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 4px;
+}
+
+.popUp {
+  display: none;
+}
+
+.detail-screen-container--title {
+  background-color: #aeadad;
+  border-radius: 15px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.detail-screen-container--title h1 {
+  font-size: 22px;
+}
+
+.detail-screen-container--title h3 {
+  font-size: 18px;
+}
+
+.detail-screen-container--like button, .start-recipe-btn {
+  background-color: #d7a631;
+  border: none;
+  border-radius: 5px;
+  padding: 1px;
+  width: 120px;
+}
+
+.detail-screen-container--like {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 8px;
+}
+
+.detail-screen-container--like img {
+  width: 20px;
+}
+
+.detail-screen--recipe {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.detail-screen--recipe li {
+  font-size: 12px;
+  margin: 0 auto;
+  width: 150px;
+}
+
+.detail-screen--recipe img {
+  border: 1px solid #9c71218e;
+  border-radius: 100%;
+  margin-bottom: 8px;
+}
+
+.recomendations-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.recomended-iten {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-screen--recomended-recipes img {
+  border-radius: 100%;
+  width: 40px;
+}
+
+.detail-screen--recomended-recipes h5 {
+  font-size: medium;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.details-screen--overflow-container {
+  border: 2px solid gray;
+  margin: 10px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 0 30px;
+  text-align: justify;
+}
+
+.details-screen--overflow-container li {
+  font-size: 1em;
+}

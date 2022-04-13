@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MyContext from '../context/MyContext';
-import Header from '../component/Header';
 import shareIcon from '../images/shareIcon.svg';
 import { getDoneRecipes } from '../helpers/localStorage';
-import './DoneRecipes.css';
+import './Styles/DoneRecipes.css';
 
 const copy = require('clipboard-copy');
 
@@ -61,82 +60,92 @@ function DoneRecipes() {
   };
 
   return (
-    <div>
-      <Header title="Done Recipes" />
-      <button
-        type="button"
-        onClick={ removeFilter }
-        data-testid="filter-by-all-btn"
-      >
-        All
-      </button>
-      <button
-        type="button"
-        onClick={ () => addFilter('food') }
-        data-testid="filter-by-food-btn"
-      >
-        Foods
-      </button>
-      <button
-        type="button"
-        onClick={ () => addFilter('drink') }
-        data-testid="filter-by-drink-btn"
-      >
-        Drinks
-      </button>
-      {
-        renderedDoneRecipesList.map((recipe, index) => (
-          (
-            <div key={ index }>
-              <Link
-                to={ (recipe.type === 'food')
-                  ? `/foods/${recipe.id}`
-                  : `/drinks/${recipe.id}` }
-              >
-                <img
-                  src={ recipe.image }
-                  alt={ recipe.name }
-                  data-testid={ `${index}-horizontal-image` }
-                />
+    <>
+      <div>
+        <h2 className="done-recipes-header">
+          Done Recipes
+        </h2>
+      </div>
+      <main className="done-recipes-container">
+        <button
+          className="done-recipes-filter"
+          type="button"
+          onClick={ removeFilter }
+          data-testid="filter-by-all-btn"
+        >
+          All
+        </button>
+        <button
+          className="done-recipes-filter"
+          type="button"
+          onClick={ () => addFilter('food') }
+          data-testid="filter-by-food-btn"
+        >
+          Foods
+        </button>
+        <button
+          className="done-recipes-filter"
+          type="button"
+          onClick={ () => addFilter('drink') }
+          data-testid="filter-by-drink-btn"
+        >
+          Drinks
+        </button>
+        {
+          renderedDoneRecipesList.map((recipe, index) => (
+            (
+              <div key={ index } className="done-recipes-container--card">
+                <Link
+                  to={ (recipe.type === 'food')
+                    ? `/foods/${recipe.id}`
+                    : `/drinks/${recipe.id}` }
+                >
+                  <img
+                    src={ recipe.image }
+                    alt={ recipe.name }
+                    data-testid={ `${index}-horizontal-image` }
+                  />
+                </Link>
+                <br />
                 <p data-testid={ `${index}-horizontal-name` }>
                   { recipe.name }
                 </p>
-              </Link>
-              <p data-testid={ `${index}-horizontal-top-text` }>
-                { (recipe.type === 'food')
-                  ? `${recipe.nationality} - ${recipe.category}`
-                  : recipe.alcoholicOrNot }
-              </p>
-              <p data-testid={ `${index}-horizontal-done-date` }>
-                { recipe.doneDate }
-              </p>
-              {
-                verifyTags(recipe.tags).map((tag) => (
-                  <p
-                    key={ tag }
-                    data-testid={ `${index}-${tag}-horizontal-tag` }
-                  >
-                    { tag }
-                  </p>
-                ))
-              }
-              <div className="popUp-container">
-                <input
-                  type="image"
-                  src={ shareIcon }
-                  alt="share button"
-                  data-testid={ `${index}-horizontal-share-btn` }
-                  onClick={ (recipe.type === 'food')
-                    ? (event) => handleShareButtonClick(event, `http://localhost:3000/foods/${recipe.id}`)
-                    : (event) => handleShareButtonClick(event, `http://localhost:3000/drinks/${recipe.id}`) }
-                />
-                <span>Link copied!</span>
+                <p data-testid={ `${index}-horizontal-top-text` }>
+                  { (recipe.type === 'food')
+                    ? `${recipe.nationality} - ${recipe.category}`
+                    : recipe.alcoholicOrNot }
+                </p>
+                <p data-testid={ `${index}-horizontal-done-date` }>
+                  { recipe.doneDate }
+                </p>
+                {
+                  verifyTags(recipe.tags).map((tag) => (
+                    <p
+                      key={ tag }
+                      data-testid={ `${index}-${tag}-horizontal-tag` }
+                    >
+                      { tag }
+                    </p>
+                  ))
+                }
+                <div className="popUp-container">
+                  <input
+                    type="image"
+                    src={ shareIcon }
+                    alt="share button"
+                    data-testid={ `${index}-horizontal-share-btn` }
+                    onClick={ (recipe.type === 'food')
+                      ? (event) => handleShareButtonClick(event, `http://localhost:3000/foods/${recipe.id}`)
+                      : (event) => handleShareButtonClick(event, `http://localhost:3000/drinks/${recipe.id}`) }
+                  />
+                  <span>Link copied!</span>
+                </div>
               </div>
-            </div>
-          )
-        ))
-      }
-    </div>
+            )
+          ))
+        }
+      </main>
+    </>
   );
 }
 

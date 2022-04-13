@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import MountRecipes from '../component/MountRecipes';
+import './Styles/RecipesInProgress.css';
 
 function RecipesInProgress(props) {
   const { match: { params: { recipeId } } } = props;
@@ -44,8 +45,10 @@ function RecipesInProgress(props) {
   };
 
   return (
-    <div>
-      RecipesInProgress
+    <div className="recipes-in-progress-container">
+      <h2>
+        Recipes In Progress
+      </h2>
       {
         recipesInProgress && mountRecipesComponent()
       }

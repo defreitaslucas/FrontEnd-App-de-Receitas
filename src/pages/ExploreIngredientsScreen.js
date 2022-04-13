@@ -4,13 +4,11 @@ import { fetchCocktailDetails } from '../services/fetchCocktail';
 import { fetchMealsDetails } from '../services/fetchMealsDetails';
 import { isFoodCheckStr } from '../helpers';
 import MyContext from '../context/MyContext';
-import './ExploreIngredientsScreen.css';
 import FooterMenu from '../component/FooterMenu';
 import Header from '../component/Header';
 
-const MAGIC_NUMBER_TWELVE = 12;
-
 export default function ExploreIngredientsScreen({ location, history }) {
+  const MAGIC_NUMBER_TWELVE = 12;
   const isFood = location.pathname.includes('foods');
   const isFoodStr = isFoodCheckStr(isFood);
 

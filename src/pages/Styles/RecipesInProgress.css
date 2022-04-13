@@ -1,0 +1,11 @@
+.recipes-in-progress-container {
+  align-items: center;
+  background-color: #222121;
+  color: #efd9d1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 8px;
+  text-align: center;
+}

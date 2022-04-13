@@ -1,0 +1,52 @@
+.done-recipes-container {
+  background-color: #222121;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 6px;
+  padding-bottom: 80px;
+}
+
+.done-recipes-container img {
+  border-radius: 100%;
+  width: 200px;
+}
+
+.done-recipes-container p {
+  color: #efd9d1;
+  overflow: hidden;
+  padding-left: 6px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.done-recipes-container--card {
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+}
+
+.done-recipes-filter {
+  background-color: #d7a631;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 4px 8px;
+  width: 100px;
+}
+
+.done-recipes-header {
+  background-color: #222121;
+  color: white;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+}

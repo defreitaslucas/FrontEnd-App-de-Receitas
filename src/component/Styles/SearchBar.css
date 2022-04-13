@@ -1,0 +1,27 @@
+.search-bar {
+  margin-top: 8px;
+}
+
+.search-bar--line-button {
+  display: flex;
+  justify-content: space-around;
+}
+
+.search-bar--line-button button {
+  background-color: #d7a631;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  line-height: 30px;
+  width: 80px;
+}
+
+.search-bar--input-radio, .search-bar--input-radio div {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.search-bar--input-text {
+  padding-left: 8px;
+}

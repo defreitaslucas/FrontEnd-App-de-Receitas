@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import Header from '../component/Header';
 import FooterMenu from '../component/FooterMenu';
-import './RecipesList.css';
+import './Styles/Drinks.css';
 
 function Drinks() {
   const { drinksList, drinksCategories, selectedDrinksCategory, setDrinks,
@@ -32,47 +32,52 @@ function Drinks() {
   }
 
   return (
-    <main>
+    <>
       <Header title="Drinks" />
-      {
-        (drinksList.length > 0)
-          ? (
-            drinksList.map(({ strDrinkThumb, strDrink, idDrink }, index) => (
-              <div key={ index }>
-                <img
-                  src={ strDrinkThumb }
-                  alt={ strDrink }
-                  data-testid={ `${index}-card-img` }
-                />
-                <p
-                  data-testid={ `${index}-card-name` }
-                >
-                  { strDrink }
-                </p>
-                <Link
-                  to={ `/drinks/${idDrink}` }
-                  data-testid={ `${index}-recipe-card` }
-                >
-                  Ver Detalhes
-                </Link>
-              </div>
-            ))
-          )
-          : null
-      }
-      <nav className="filters-container">
+      <main className="drinks-container">
         {
           (drinksCategories.length > 0)
             ? (
-              drinksCategories.map((category) => (
-                <button
-                  key={ category }
-                  type="button"
-                  onClick={ () => addFilter(category) }
-                  data-testid={ `${category}-category-filter` }
+              <div className="drinks-container--category">
+                {drinksCategories.map((category) => (
+                  <button
+                    key={ category }
+                    type="button"
+                    onClick={ () => addFilter(category) }
+                    data-testid={ `${category}-category-filter` }
+                  >
+                    { category }
+                  </button>
+                ))}
+              </div>
+            )
+            : null
+        }
+        {
+          (drinksList.length > 0)
+            ? (
+              drinksList.map(({ strDrinkThumb, strDrink, idDrink }, index) => (
+                <Link
+                  to={ `/drinks/${idDrink}` }
+                  data-testid={ `${index}-recipe-card` }
+                  key={ index }
                 >
-                  {category}
-                </button>
+                  <div className="drinks-container--card">
+                    <img
+                      src={ strDrinkThumb }
+                      alt={ strDrink }
+                      data-testid={ `${index}-card-img` }
+                    />
+                    <p
+                      data-testid={ `${index}-card-name` }
+                    >
+                      { strDrink }
+                    </p>
+                    <p className="drinks-container--detail-view">
+                      Ver Detalhes
+                    </p>
+                  </div>
+                </Link>
               ))
             )
             : null
@@ -85,9 +90,9 @@ function Drinks() {
         >
           All
         </button>
-      </nav>
+      </main>
       <FooterMenu />
-    </main>
+    </>
   );
 }
 
