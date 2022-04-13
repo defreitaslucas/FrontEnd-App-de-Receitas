@@ -178,7 +178,7 @@ export default function FoodDetailsScreen(props) {
 
       <div className="detail-screen--recomended-recipes">
         <h5>
-          Recomended recipes:
+          Recommended recipes:
         </h5>
         <div
           className="recomendations-container"

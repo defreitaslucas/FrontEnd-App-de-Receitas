@@ -228,7 +228,7 @@ export default function MountRecipes(props) {
               data-testid="finish-recipe-btn"
               onClick={ () => finishRecipe(item) }
             >
-              Finalizar Receita
+              Finish Recipe
             </button>
           </div>
         ))
