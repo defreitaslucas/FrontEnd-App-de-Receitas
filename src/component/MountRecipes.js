@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeart from '../images/whiteHeartIcon.svg';
-import blackHeart from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg'; import whiteHeart from
+'../images/whiteHeartIcon.svg'; import blackHeart from '../images/blackHeartIcon.svg';
 import homeIcon from '../images/homeIcon.svg';
 import {
-  getRecipeIngredients, saveFavoriteRecipe, getFavoriteRecipes,
-  removeFavoriteRecipeById, removeFavoriteRecipeByType, saveDoneRecipe,
+  getRecipeIngredients, saveFavoriteRecipe, getFavoriteRecipes, saveDoneRecipe,
+  removeFavoriteRecipeById, removeFavoriteRecipeByType, resetRecipeProgress,
 } from '../helpers/localStorage';
 import './Styles/MountRecipes.css';
 import { checkPath } from '../helpers';
@@ -26,7 +25,6 @@ export default function MountRecipes(props) {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
   const { idRecipes: { recipeId } } = props;
-
   const handleShareButtonClick = ({ currentTarget }) => {
     const newPathname = pathname.replace('/in-progress', '');
     copy(`http://localhost:3000${newPathname}`);
@@ -131,20 +129,23 @@ export default function MountRecipes(props) {
         doneDate: today,
         tags: recipe.strTags };
       saveDoneRecipe(newObj);
+      resetRecipeProgress(newObj.id, 'cocktails');
+      history.push('/done-recipes');
+    } else {
+      const newObj = { id: recipe.idMeal,
+        type: 'food',
+        nationality: recipe.strArea,
+        category: recipe.strCategory,
+        alcoholicOrNot: '',
+        name: recipe.strMeal,
+        image: recipe.strMealThumb,
+        doneDate: today,
+        tags: recipe.strTags };
+      resetRecipeProgress(newObj.id, 'meals');
+      saveDoneRecipe(newObj);
+      history.push('/done-recipes');
     }
-    const newObj = { id: recipe.idMeal,
-      type: 'food',
-      nationality: recipe.strArea,
-      category: recipe.strCategory,
-      alcoholicOrNot: '',
-      name: recipe.strMeal,
-      image: recipe.strMealThumb,
-      doneDate: today,
-      tags: recipe.strTags };
-    saveDoneRecipe(newObj);
-    history.push('/done-recipes');
   };
-
   return (
     <div>
       {
@@ -243,8 +244,6 @@ export default function MountRecipes(props) {
   );
 }
 MountRecipes.propTypes = {
-  idRecipes: PropTypes.shape({
-    recipeId: PropTypes.string,
-  }).isRequired,
+  idRecipes: PropTypes.shape({ recipeId: PropTypes.string }).isRequired,
   recipesInProgress: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

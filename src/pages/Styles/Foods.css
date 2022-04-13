@@ -34,6 +34,10 @@
   width: 106px;
 }
 
+.foods-container--card:hover {
+  transform: scale(1.1);
+}
+
 .foods-container--detail-view {
   display: none;
 }

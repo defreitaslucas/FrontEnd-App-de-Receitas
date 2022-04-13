@@ -53,7 +53,6 @@ export const checkRecipeFavoritness = (recipeID) => {
 
 export const getRecipeIngredients = (id, type) => {
   const inProgressRecipes = getInProgressRecipes()[type];
-  console.log(inProgressRecipes);
   const inProgressRecipesIds = Object.keys(getInProgressRecipes()[type]);
   const verifyRecipeId = inProgressRecipesIds.find((itemId) => itemId === id);
   if (verifyRecipeId) return inProgressRecipes[id];
@@ -64,4 +63,10 @@ export const saveDoneRecipe = (recipeData) => {
   const currentDoneRecipes = getDoneRecipes();
   const newDoneRecipes = [...currentDoneRecipes, { ...recipeData }];
   localStorage.setItem('doneRecipes', JSON.stringify(newDoneRecipes));
+};
+
+export const resetRecipeProgress = (recipeId, type) => {
+  const currentRecipesInProgress = getInProgressRecipes();
+  currentRecipesInProgress[type][recipeId] = [];
+  localStorage.setItem('inProgressRecipes', JSON.stringify(currentRecipesInProgress));
 };

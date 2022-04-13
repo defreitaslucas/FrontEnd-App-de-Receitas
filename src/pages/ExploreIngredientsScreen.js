@@ -46,7 +46,6 @@ export default function ExploreIngredientsScreen({ location, history }) {
     <main>
       <Header title="Explore Ingredients" />
       <header>
-        {console.log(location.pathname.includes('foods'))}
         <h1>
           { isFoodStr.toUpperCase() }
           {' '}

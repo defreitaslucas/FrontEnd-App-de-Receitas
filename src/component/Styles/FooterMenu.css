@@ -9,3 +9,8 @@
   right: 0;
   width: 360px;
 }
+
+.footer-menu img:hover {
+  background-color: silver;
+  transform: scale(1.1);
+}
