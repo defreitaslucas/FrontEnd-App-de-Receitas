@@ -192,7 +192,7 @@ export default function MountRecipes(props) {
                 </button>
               </Link>
             </div>
-            <h3 className="ingredients-title">INGREDIENTS:</h3>
+            <h5 style={ { fontWeight: '800' } }>INGREDIENTS:</h5>
             <ol className="mount-recipes-ingredients mount-recipes-overflow-container">
               { ingredientList.map((ingredient, index) => (
                 <div key={ ingredient }>
@@ -220,7 +220,7 @@ export default function MountRecipes(props) {
                 </div>
               )) }
             </ol>
-            <h3 className="ingredients-title">INSTRUCTIONS:</h3>
+            <h5 style={ { fontWeight: '800' } }>INSTRUCTIONS:</h5>
             <p
               className="mount-recipes-overflow-container"
               data-testid="instructions"
